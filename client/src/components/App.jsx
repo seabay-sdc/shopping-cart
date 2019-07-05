@@ -6,10 +6,20 @@ class App extends React.Component {
     super();
 
     this.state = {
-      cart: [{ id: 0, name: 'Laptop', price: 100, picture: '' }],
+      cart: [
+        { id: 0, name: 'Laptop', price: 100, picture: 'https://lnv.gy/2JrZglM' },
+        { id: 1, name: 'Headphones', price: 30, picture: 'https://bit.ly/32c0loE' },
+      ],
       display: true,
     };
+
+    this.toggleProductsMenu = this.toggleProductsMenu.bind(this);
   }
+
+  toggleProductsMenu () {
+    this.setState({ display: !this.state.display });
+  }
+
   render () {
     return (
       <div>
@@ -29,7 +39,11 @@ class App extends React.Component {
           <li><a href='#'>My SeaBay</a></li>
           <li><a href='#'>Notifications</a></li>
           <li>
-            <Cart cart={this.state.cart} display={this.state.display} />
+            <Cart
+              cart={this.state.cart}
+              display={this.state.display}
+              onClick={this.toggleProductsMenu}
+            />
           </li>
         </ul>
       </div>
