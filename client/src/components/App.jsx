@@ -14,15 +14,20 @@ class App extends React.Component {
     return (
       <div>
         <ul>
-          <li>Hi! Sign in or register</li>
-          <li>Daily Deals</li>
-          <li>Gift Cards</li>
-          <li>Help & Contact</li>
+          <li>
+            <span>
+              Hi! <span><a href='#'>Sign in </a></span>
+              or <span><a href='#'>register</a></span>
+            </span>
+          </li>
+          <li><a href='#'>Daily Deals</a></li>
+          <li><a href='#'>Gift Cards</a></li>
+          <li><a href='#'>Help & Contact</a></li>
         </ul>
         <ul>
-          <li>Sell</li>
-          <li>My SeaBay</li>
-          <li>Notifications</li>
+          <li><a href='#'>Sell</a></li>
+          <li><a href='#'>My SeaBay</a></li>
+          <li><a href='#'>Notifications</a></li>
           <li>
             <Cart cart={this.state.cart} display={this.state.display} />
           </li>

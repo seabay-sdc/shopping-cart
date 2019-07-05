@@ -8,7 +8,7 @@ const Cart = ({ cart, display }) => {
   }
   return (
     <div>
-      {`Cart - Items: ${cart.length}`}
+      <a href='#'>{`Cart - Items: ${cart.length}`}</a>
       {productDisplay}
     </div>
   );
