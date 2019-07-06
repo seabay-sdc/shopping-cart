@@ -1,0 +1,143 @@
+html>body #gh {
+  margin-left: 32px;
+  margin-right: 32px;
+  max-width: 1248px;
+}
+
+header {
+  display: block;
+}
+
+ul {
+  display: block;
+  list-style-type: disc;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
+}
+
+li.gh-eb-li {
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  white-space: nowrap;
+  margin: 0 3px;
+}
+
+.gh-w {
+  text-align: left;
+}
+
+.gh-w ul, .gh-w li {
+  margin: 0;
+  padding: 0;
+  list-style: none outside none;
+}
+
+.gh-w .gh-t {
+  display: inline-block;
+  font-size: 12px;
+  padding: 0 9px 0 11px;
+}
+
+.gh-w .gh-divider-l {
+  display: inline-block;
+  border-left: 1px #909090 solid;
+}
+
+.gh-eb-active {
+  border-style: solid;
+  border-width: 2px 1px 0;
+  border-color: #598fd5 #ddd;
+  border-radius: 3px 3px 0 0;
+  box-shadow: 2px 0 0 #eee;
+  z-index: 10000;
+  position: relative;
+  background: #fff;
+}
+
+.gh-w .gh-t:first-child, .gh-w #_nkw.gh-t {
+  background: 0;
+  padding: 0;
+}
+
+.gh-w li.gh-divider {
+  display: inline-block;
+  border-right: 1px #c7c7c7 solid;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
+}
+
+.gh-w li.gh-t-rt {
+  padding: 2px 3px 0 3px;
+  margin: 0 -1px;
+  vertical-align: text-bottom;
+}
+
+.gh-p {
+  padding: 3px 0 5px;
+  font-size: 12px;
+}
+
+.gh-t-rt .gh-p {
+  padding: 0 9px;
+}
+
+#gh-topl a, #gh-eb a {
+  color: #333;
+  cursor: pointer;
+}
+
+#gh {
+  color: #333;
+  font-family: "Helvetica Neue",Helvetica,Arial,Verdana,Sans-serif !important;
+  font-size: 14px;
+  line-height: 1;
+  margin: 0;
+  padding: 35px 0 10px 0;
+  position: relative;
+  white-space: nowrap;
+}
+
+#gh ul li {
+  list-style: none;
+}
+
+#gh-eb {
+  position: absolute;
+  top: 1px;
+  right: 0;
+  z-index: 99999;
+}
+
+#gh-ug {
+  font-size: 12px;
+  white-space: nowrap;
+  display: inline-block;
+  *display: inline;
+  padding: 5px 17px 6px 10px;
+  border: 1px solid #fff;
+  border-width: 2px 1px 0;
+  text-decoration: none;
+  position: relative;
+  left: -10px;
+}
+
+#gh-top, #gh-gb {
+  background-color: #fff;
+  border-bottom: 1px solid #ccc;
+  box-sizing: initial;
+  left: 0;
+  height: 30px;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+#gh-topl {
+  margin-top: 1px;
+  text-align: left;
+}
