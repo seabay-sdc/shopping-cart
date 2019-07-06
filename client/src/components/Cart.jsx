@@ -8,7 +8,7 @@ const Cart = ({ cart, display, onClick }) => {
   }
   return (
     <div>
-      <a href='#' onClick={onClick}>{`Cart - Items: ${cart.length}`}</a>
+      <a href='#' className='gh-p' onClick={onClick}>{`Cart - Items: ${cart.length}`}</a>
       {productDisplay}
     </div>
   );
