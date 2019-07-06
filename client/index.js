@@ -1,3 +1,3 @@
-import App from './client/src/components/App.jsx';
+import Cart from './client/src/components/App.jsx';
 
-window.Cart = App;
+window.Cart = Cart;
