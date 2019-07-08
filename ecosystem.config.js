@@ -1,6 +1,6 @@
 module.exports = {
   apps: [{
-    name: 'seabay',
+    name: 'seabay-cart',
     script: './server/server.js'
   }],
   deploy: {
