@@ -16,6 +16,16 @@ class App extends React.Component {
     this.toggleProductsMenu = this.toggleProductsMenu.bind(this);
   }
 
+  testOnClick () {
+    console.log('clicked');
+    const event = new CustomEvent('addItemToCart', { detail: { id: 5 }});
+    document.dispatchEvent(event);
+  }
+
+  componentDidMount () {
+    document.addEventListener('addItemToCart', () => console.log('item added'));
+  }
+
   toggleProductsMenu () {
     this.setState({ display: !this.state.display });
   }
@@ -36,7 +46,8 @@ class App extends React.Component {
             <li className='gh-t gh-divider-l'><a href='#' className='gh-p'>Help & Contact</a></li>
           </ul>
           <ul id='gh-eb'>
-            <li className='gh-eb-li gh-t-rt gh-divider'><a href='#' className='gh-p'>Sell</a></li>
+            <li className='gh-eb-li gh-t-rt gh-divider'>
+              <a href='#' className='gh-p' onClick={this.testOnClick}>Sell</a></li>
             <li className='gh-eb-li gh-t-rt gh-divider'><a href='#' className='gh-p'>My SeaBay</a></li>
             <li className='gh-eb-li gh-t-rt gh-divider'><a href='#' className='gh-p'>Notifications</a></li>
             <li className='gh-eb-li gh-t-rt'>
