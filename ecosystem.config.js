@@ -6,7 +6,7 @@ module.exports = {
   deploy: {
     production: {
       user: 'ubuntu',
-      host: 'ec2-18-188-235-148.us-east-2.compute.amazonaws.com',
+      host: 'ec2-3-19-61-24.us-east-2.compute.amazonaws.com',
       key: '~/.ssh/seabay.pem',
       ref: 'origin/master',
       repo: 'git@github.com:baebay/shopping-cart.git',

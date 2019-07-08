@@ -1,16 +1,17 @@
-const mysql = require('mysql');
-const Promise = require('bluebird');
+const mongoose = require('mongoose');
+mongoose.connect(process.env.DB_URI, { useNewUrlParser: true });
+const connection =  mongoose.connection;
+const Schema = mongoose.Schema;
+const ObjectId = Schema.ObjectId;
 
-const connection = mysql.createConnection({
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME
+const ProductSchema = new Schema({
+  id: Number,
+  name: String,
+  price: Number,
+  category: String,
+  img1_url: String
 });
 
-const db = Promise.promisifyAll(connection, { multiArgs: true });
+const Products = mongoose.model('product', ProductSchema);
 
-db.connectAsync()
-.then(() => console.log('Database connected'))
-.catch(() => console.log('Connection failed'));
-
-module.exports = db;
+Products.find({ category: 'test_category' }).then(console.log);
