@@ -12,6 +12,7 @@ module.exports = {
       repo: 'git@github.com:baebay/shopping-cart.git',
       path: '/home/ubuntu/server/shopping-cart',
       'post-deploy': 'npm install && pm2 startOrRestart ecosystem.config.js'
+
     }
   }
 }
