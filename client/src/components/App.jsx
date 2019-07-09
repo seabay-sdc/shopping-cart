@@ -32,11 +32,27 @@ class App extends React.Component {
 
   render () {
     return (
-      <Cart
-        cart={this.state.cart}
-        display={this.state.display}
-        onClick={this.toggleProductsMenu}
-      />
+      <nav>
+        <div className="container">
+          <ul className="navbar-left">
+            <li><a href="#">Hi! Sign in or Register</a></li>
+            <li><a href="#">Daily Deals</a></li>
+            <li><a href="#">Gift Cards</a></li>
+            <li><a href="#">Help & Contact</a></li>
+          </ul>
+          <ul className="navbar-right">
+            <li><a href="#">Sell</a></li>
+            <li><a href="#">My eBay</a></li>
+            <li><a href="#">Notifications</a></li>
+            <li>Cart</li>
+          </ul>
+        </div>
+      </nav>
+      // <Cart
+      //   cart={this.state.cart}
+      //   display={this.state.display}
+      //   onClick={this.toggleProductsMenu}
+      // />
     );
   }
 }
