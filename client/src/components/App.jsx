@@ -32,34 +32,11 @@ class App extends React.Component {
 
   render () {
     return (
-      <header id='gh' className='gh-w'>
-        <div id='gh-top'>
-          <ul id='gh-topl'>
-            <li className='gh-t'>
-              <span id='gh-ug'>
-                Hi! <span><a href='#'>Sign in </a></span>
-                or <span><a href='#'>register</a></span>
-              </span>
-            </li>
-            <li className='gh-t gh-divider-l'><a href='#' className='gh-p'>Daily Deals</a></li>
-            <li className='gh-t gh-divider-l'><a href='#' className='gh-p'>Gift Cards</a></li>
-            <li className='gh-t gh-divider-l'><a href='#' className='gh-p'>Help & Contact</a></li>
-          </ul>
-          <ul id='gh-eb'>
-            <li className='gh-eb-li gh-t-rt gh-divider'>
-              <a href='#' className='gh-p' onClick={this.testOnClick}>Sell</a></li>
-            <li className='gh-eb-li gh-t-rt gh-divider'><a href='#' className='gh-p'>My SeaBay</a></li>
-            <li className='gh-eb-li gh-t-rt gh-divider'><a href='#' className='gh-p'>Notifications</a></li>
-            <li className='gh-eb-li gh-t-rt'>
-              <Cart
-                cart={this.state.cart}
-                display={this.state.display}
-                onClick={this.toggleProductsMenu}
-              />
-            </li>
-          </ul>
-        </div>
-      </header>
+      <Cart
+        cart={this.state.cart}
+        display={this.state.display}
+        onClick={this.toggleProductsMenu}
+      />
     );
   }
 }
