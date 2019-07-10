@@ -1,3 +1,7 @@
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
 nav {
   font-size: 14px;
   padding: 0px 0 10px 0;
@@ -94,20 +98,6 @@ nav ul li a {
   text-align: center;
   text-decoration: none;
 }
-/*
-.shopping-cart:after {
-	bottom: 100%;
-	left: 93%;
-	border: solid transparent;
-	content: " ";
-	height: 0;
-	width: 0;
-	position: absolute;
-	pointer-events: none;
-	border-bottom-color: white;
-	border-width: 8px;
-	margin-left: -8px;
-} */
 
 .clearfix:after {
   content: "";
