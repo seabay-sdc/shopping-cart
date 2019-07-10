@@ -34,7 +34,7 @@ class App extends React.Component {
     let cartRender;
 
     if (this.state.display === true) {
-      cartRender = <Cart />;
+      cartRender = <Cart cart={this.state.cart} />;
     }
 
     return (
