@@ -1,5 +1,6 @@
 import React from 'react';
 import Cart from './Cart.jsx';
+import axios from 'axios';
 
 class App extends React.Component {
   constructor () {
@@ -24,6 +25,7 @@ class App extends React.Component {
 
   componentDidMount () {
     document.addEventListener('addItemToCart', () => console.log('item added'));
+
   }
 
   toggleProductsMenu () {
