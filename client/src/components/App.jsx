@@ -53,7 +53,6 @@ class App extends React.Component {
         <div class="container">
           <div class="shopping-cart">
             <div class="shopping-cart-header">
-              <i class="fa fa-shopping-cart cart-icon"></i><span class="badge">3</span>
               <div class="shopping-cart-total">
                 <span class="lighter-text">Total:</span>
                 <span class="main-color-text">$2,229.97</span>
@@ -82,7 +81,6 @@ class App extends React.Component {
                 <span class="item-quantity">Quantity: 01</span>
               </li>
             </ul>
-
             <a href="#" class="button">Checkout</a>
           </div>
         </div>

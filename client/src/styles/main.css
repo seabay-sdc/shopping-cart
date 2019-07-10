@@ -1,3 +1,7 @@
+body {
+  background: black;
+}
+
 nav {
   font-size: 14px;
   padding: 0px 0 10px 0;
@@ -29,4 +33,83 @@ nav ul li {
 
 nav ul li a {
   text-decoration: none;
+}
+
+.shopping-cart {
+  float: right;
+  background: white;
+  width: 300px;
+  position: relative;
+  border-radius: 3px;
+  padding: 15px;
+}
+
+.shopping-cart-header {
+  border-bottom: 1px solid #E8E8E8;
+  padding-bottom: 30px;
+}
+
+.shopping-cart-total {
+  float: right;
+}
+
+.shopping-cart-items {
+  padding: 10px 0px 0px 20px;
+}
+
+.shopping-cart-items li {
+  list-style-type: none;
+  margin-bottom: 18px;
+}
+
+.shopping-cart-items img {
+  float: left;
+  margin-right: 12px;
+}
+
+.item-name {
+  display: block;
+  padding-top: 10px;
+  font-size: 16px;
+}
+
+.item-price {
+  /* color: $main-color; */
+  margin-right: 8px;
+}
+
+.item-quantity {
+  /* color: $light-text; */
+}
+
+.button {
+  background: #6394F8;
+  border-radius: 3px;
+  color:white;
+  display: block;
+  font-size: 16px;
+  margin: 0px 20px;
+  padding: 12px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.shopping-cart:after {
+	bottom: 100%;
+	left: 93%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+	border-bottom-color: white;
+	border-width: 8px;
+	margin-left: -8px;
+}
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
 }
