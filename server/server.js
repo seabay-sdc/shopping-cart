@@ -2,7 +2,7 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const { Products, CartItems } = require('./database/database');
+const db = require('./database/database');
 const app = express();
 const port = process.env.SERVER_PORT;
 
@@ -11,14 +11,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('client/dist'));
 
-app.get('/', (req, res) => {
-  res.status(200).send('Get request successful!');
+app.get('/api/data', (req, res) => {
+  db.getCartItems()
+  .then((cartItems) => res.status(200).send(cartItems));
 });
 
-app.get('/api/data', (req, res) => {
-  CartItems.find({})
-  .then((products) => res.status(200).send(products))
-  .catch(console.error);
+app.post('/api/cart', (req, res) => {
+  db.findProductById(req.body.id)
+  .then(([ item ]) => db.addItemsToCart(item))
+  .then(() => res.status(201).send());
 });
 
 app.listen(port, () => console.log(`Server is running on ${port}`));

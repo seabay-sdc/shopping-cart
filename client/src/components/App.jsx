@@ -1,29 +1,38 @@
 import React from 'react';
 import Cart from './Cart.jsx';
+import axios from 'axios';
 
 class App extends React.Component {
   constructor () {
     super();
 
     this.state = {
-      cart: [
-        { id: 0, name: 'Laptop', price: 100, picture: 'https://lnv.gy/2JrZglM' },
-        { id: 1, name: 'Headphones', price: 30, picture: 'https://bit.ly/32c0loE' },
-      ],
+      cart: [],
       display: false,
     };
 
     this.toggleProductsMenu = this.toggleProductsMenu.bind(this);
   }
 
-  testOnClick () {
-    console.log('clicked');
-    const event = new CustomEvent('addItemToCart', { detail: { id: 5 }});
+  getCartItems () {
+    axios.get('/api/data')
+    .then(({ data }) => this.setState({ cart: data }))
+    .catch(console.error);
+  }
+
+  addItemToCart () {
+    const event = new CustomEvent('addItemToCart', { detail: { id: 3 }});
     document.dispatchEvent(event);
   }
 
   componentDidMount () {
-    document.addEventListener('addItemToCart', () => console.log('item added'));
+    document.addEventListener('addItemToCart', ({ detail }) => {
+      axios.post('/api/cart', detail)
+      .then(() => this.getCartItems())
+      .catch(console.error);
+    });
+
+    this.getCartItems();
   }
 
   toggleProductsMenu () {
@@ -57,6 +66,8 @@ class App extends React.Component {
         </nav>
 
         {cartRender}
+
+        <button onClick={this.addItemToCart}>Add Item to Cart</button>
       </div>
     );
   }
