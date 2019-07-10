@@ -7,9 +7,17 @@ nav {
   padding: 0px 0 10px 0;
 }
 
+a {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
 .container {
   margin: auto;
-  width: 80%;
+  width: 60%;
 }
 
 .navbar-left {
