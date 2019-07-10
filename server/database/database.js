@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.connect(process.env.DB_URI, { useNewUrlParser: true });
+mongoose.connect(process.env.DB_URI);
 const connection =  mongoose.connection;
 const Schema = mongoose.Schema;
 const ObjectId = Schema.ObjectId;
