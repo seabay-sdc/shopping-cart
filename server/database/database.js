@@ -14,4 +14,6 @@ const ProductSchema = new Schema({
 
 const Products = mongoose.model('product', ProductSchema);
 
-Products.find({ category: 'test_category' }).then(console.log);
+// Products.find({ category: 'test_category' }).then(console.log);
+
+module.exports = Products;

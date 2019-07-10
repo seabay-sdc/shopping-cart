@@ -15,4 +15,10 @@ app.get('/', (req, res) => {
   res.status(200).send('Get request successful!');
 });
 
+app.get('/api/data', (req, res) => {
+  db.find({})
+  .then((products) => res.status(200).send(products))
+  .catch(console.error);
+});
+
 app.listen(port, () => console.log(`Server is running on ${port}`));
