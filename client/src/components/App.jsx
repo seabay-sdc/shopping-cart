@@ -15,7 +15,7 @@ class App extends React.Component {
   }
 
   getCartItems () {
-    axios.get('/api/data')
+    axios.get('/api/cart/items')
     .then(({ data }) => this.setState({ cart: data }))
     .catch(console.error);
   }
@@ -23,7 +23,7 @@ class App extends React.Component {
 
   componentDidMount () {
     document.addEventListener('addItemToCart', ({ detail }) => {
-      axios.post('/api/cart/item', detail)
+      axios.post('/api/cart', detail)
       .then(() => this.getCartItems())
       .catch(console.error);
     });
