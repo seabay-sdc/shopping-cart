@@ -12,8 +12,15 @@ const ProductSchema = new Schema({
   img1_url: String
 });
 
+const CartItemSchema = new Schema({
+  id: Number,
+  name: String,
+  price: Number,
+  category: String,
+  img1_url: String
+});
+
 const Products = mongoose.model('product', ProductSchema);
+const CartItems = mongoose.model('cart_item', CartItemSchema);
 
-// Products.find({ category: 'test_category' }).then(console.log);
-
-module.exports = Products;
+module.exports = { Products, CartItems };

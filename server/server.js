@@ -2,7 +2,7 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const db = require('./database/database');
+const { Products, CartItems } = require('./database/database');
 const app = express();
 const port = process.env.SERVER_PORT;
 
@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/api/data', (req, res) => {
-  db.find({})
+  CartItems.find({})
   .then((products) => res.status(200).send(products))
   .catch(console.error);
 });
