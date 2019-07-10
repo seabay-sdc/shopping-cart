@@ -7,10 +7,7 @@ class App extends React.Component {
     super();
 
     this.state = {
-      cart: [
-        { id: 0, name: 'Laptop', price: 100, picture: 'https://lnv.gy/2JrZglM' },
-        { id: 1, name: 'Headphones', price: 30, picture: 'https://bit.ly/32c0loE' },
-      ],
+      cart: [],
       display: false,
     };
 
@@ -25,7 +22,9 @@ class App extends React.Component {
 
   componentDidMount () {
     document.addEventListener('addItemToCart', () => console.log('item added'));
-
+    axios.get('/api/data')
+    .then(({ data }) => this.setState({ cart: data }))
+    .catch(console.error);
   }
 
   toggleProductsMenu () {
