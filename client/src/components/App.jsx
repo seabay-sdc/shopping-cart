@@ -20,10 +20,6 @@ class App extends React.Component {
     .catch(console.error);
   }
 
-  addItemToCart () {
-    const event = new CustomEvent('addItemToCart', { detail: { id: 3 }});
-    document.dispatchEvent(event);
-  }
 
   componentDidMount () {
     document.addEventListener('addItemToCart', ({ detail }) => {
@@ -67,7 +63,6 @@ class App extends React.Component {
 
         {cartRender}
 
-        <button onClick={this.addItemToCart}>Add Item to Cart</button>
       </div>
     );
   }
