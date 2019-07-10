@@ -4,6 +4,7 @@ const express = require('express');
 const cors = require('cors');
 const db = require('./database/database');
 const app = express();
+const host = process.env.SERVER_HOST;
 const port = process.env.SERVER_PORT;
 
 app.use(cors());
@@ -11,12 +12,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('client/dist'));
 
-app.get('/api/data', (req, res) => {
+app.get(`${host}:${port}/api/data`, (req, res) => {
   db.getCartItems()
   .then((cartItems) => res.status(200).send(cartItems));
 });
 
-app.post('/api/cart', (req, res) => {
+app.post(`${host}:${port}/api/data`, (req, res) => {
   db.findProductById(req.body.id)
   .then(([ item ]) => db.addItemsToCart(item))
   .then(() => res.status(201).send());
