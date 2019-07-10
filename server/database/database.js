@@ -23,4 +23,19 @@ const CartItemSchema = new Schema({
 const Products = mongoose.model('product', ProductSchema);
 const CartItems = mongoose.model('cart_item', CartItemSchema);
 
-module.exports = { Products, CartItems };
+const getCartItems = () => {
+  return CartItems.find({})
+  .catch(console.error);
+};
+
+const addItemsToCart = (items) => {
+  return CartItems.update(items, update, { upsert: true})
+  .catch(console.error);
+}
+
+const findProductById = (id) => {
+  return Products.find({ id: id })
+  .catch(console.error);
+};
+
+module.exports = { getCartItems, addItemsToCart, findProductById };

@@ -14,14 +14,17 @@ class App extends React.Component {
     this.toggleProductsMenu = this.toggleProductsMenu.bind(this);
   }
 
-  testOnClick () {
-    console.log('clicked');
-    const event = new CustomEvent('addItemToCart', { detail: { id: 5 }});
+  addItemToCart () {
+    const event = new CustomEvent('addItemToCart', { detail: { id: 3 }});
     document.dispatchEvent(event);
   }
 
   componentDidMount () {
-    document.addEventListener('addItemToCart', () => console.log('item added'));
+    document.addEventListener('addItemToCart', ({ detail }) => {
+      axios.post('/api/cart', detail)
+      .catch(console.error);
+    });
+
     axios.get('/api/data')
     .then(({ data }) => this.setState({ cart: data }))
     .catch(console.error);
@@ -58,6 +61,8 @@ class App extends React.Component {
         </nav>
 
         {cartRender}
+
+        <button onClick={this.addItemToCart}>Add Item to Cart</button>
       </div>
     );
   }
