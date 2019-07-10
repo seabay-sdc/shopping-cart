@@ -15,7 +15,7 @@ class App extends React.Component {
   }
 
   getCartItems () {
-    axios.get('/api/cart/items')
+    axios.get('http://localhost:3005/api/cart/items')
     .then(({ data }) => this.setState({ cart: data }))
     .catch(console.error);
   }
