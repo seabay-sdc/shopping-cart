@@ -18,7 +18,7 @@ app.get('/api/data', (req, res) => {
 
 app.post('/api/cart', (req, res) => {
   db.findProductById(req.body.id)
-  .then((itemsArray) => db.addItemsToCart(itemsArray))
+  .then(([ item ]) => db.addItemsToCart(item))
   .then(() => res.status(201).send());
 });
 

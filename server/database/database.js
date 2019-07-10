@@ -28,8 +28,10 @@ const getCartItems = () => {
   .catch(console.error);
 };
 
-const addItemsToCart = (items) => {
-  return CartItems.update(items, update, { upsert: true})
+const addItemsToCart = (item) => {
+  return CartItems.find(item)
+  .then((resultArray) => resultArray.length > 0)
+  .then((exists) => exists ? null : CartItems.insertMany([ item ]))
   .catch(console.error);
 }
 

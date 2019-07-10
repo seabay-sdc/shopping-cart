@@ -14,6 +14,12 @@ class App extends React.Component {
     this.toggleProductsMenu = this.toggleProductsMenu.bind(this);
   }
 
+  getCartItems () {
+    axios.get('/api/data')
+    .then(({ data }) => this.setState({ cart: data }))
+    .catch(console.error);
+  }
+
   addItemToCart () {
     const event = new CustomEvent('addItemToCart', { detail: { id: 3 }});
     document.dispatchEvent(event);
@@ -22,12 +28,11 @@ class App extends React.Component {
   componentDidMount () {
     document.addEventListener('addItemToCart', ({ detail }) => {
       axios.post('/api/cart', detail)
+      .then(() => this.getCartItems())
       .catch(console.error);
     });
 
-    axios.get('/api/data')
-    .then(({ data }) => this.setState({ cart: data }))
-    .catch(console.error);
+    this.getCartItems();
   }
 
   toggleProductsMenu () {
