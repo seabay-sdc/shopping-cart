@@ -44,7 +44,7 @@ class App extends React.Component {
             <li><a href="#">Sell</a></li>
             <li><a href="#">My eBay</a></li>
             <li><a href="#">Notifications</a></li>
-            <li>Cart</li>
+            <li><a href="#">Cart</a></li>
           </ul>
         </div>
       </nav>
