@@ -11,7 +11,7 @@ module.exports = {
       ref: 'origin/master',
       repo: 'git@github.com:baebay/shopping-cart.git',
       path: '/home/ubuntu/server/shopping-cart',
-      'post-deploy': 'npm install && pm2 startOrRestart ecosystem.config.js'
+      'post-deploy': 'npm install && npx webpack && pm2 startOrRestart ecosystem.config.js'
 
     }
   }
