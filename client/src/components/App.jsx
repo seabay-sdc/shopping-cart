@@ -31,35 +31,33 @@ class App extends React.Component {
   }
 
   render () {
+    let cartRender;
+
+    if (this.state.display === true) {
+      cartRender = <Cart cart={this.state.cart} />;
+    }
+
     return (
-      <header id='gh' className='gh-w'>
-        <div id='gh-top'>
-          <ul id='gh-topl'>
-            <li className='gh-t'>
-              <span id='gh-ug'>
-                Hi! <span><a href='#'>Sign in </a></span>
-                or <span><a href='#'>register</a></span>
-              </span>
-            </li>
-            <li className='gh-t gh-divider-l'><a href='#' className='gh-p'>Daily Deals</a></li>
-            <li className='gh-t gh-divider-l'><a href='#' className='gh-p'>Gift Cards</a></li>
-            <li className='gh-t gh-divider-l'><a href='#' className='gh-p'>Help & Contact</a></li>
-          </ul>
-          <ul id='gh-eb'>
-            <li className='gh-eb-li gh-t-rt gh-divider'>
-              <a href='#' className='gh-p' onClick={this.testOnClick}>Sell</a></li>
-            <li className='gh-eb-li gh-t-rt gh-divider'><a href='#' className='gh-p'>My SeaBay</a></li>
-            <li className='gh-eb-li gh-t-rt gh-divider'><a href='#' className='gh-p'>Notifications</a></li>
-            <li className='gh-eb-li gh-t-rt'>
-              <Cart
-                cart={this.state.cart}
-                display={this.state.display}
-                onClick={this.toggleProductsMenu}
-              />
-            </li>
-          </ul>
-        </div>
-      </header>
+      <div>
+        <nav>
+          <div className="container">
+            <ul className="navbar-left">
+              <li><a href="#">Hi! Sign in or Register</a></li>
+              <li><a href="#">Daily Deals</a></li>
+              <li><a href="#">Gift Cards</a></li>
+              <li><a href="#">Help & Contact</a></li>
+            </ul>
+            <ul className="navbar-right">
+              <li><a href="#">Sell</a></li>
+              <li><a href="#">My eBay</a></li>
+              <li><a href="#">Notifications</a></li>
+              <li><a href="#" onClick={this.toggleProductsMenu}>Cart</a></li>
+            </ul>
+          </div>
+        </nav>
+
+        {cartRender}
+      </div>
     );
   }
 }
