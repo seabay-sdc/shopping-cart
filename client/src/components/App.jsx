@@ -23,7 +23,7 @@ class App extends React.Component {
 
   componentDidMount () {
     document.addEventListener('addItemToCart', ({ detail }) => {
-      axios.post('/api/cart', detail)
+      axios.post('http://localhost:3005/api/cart', detail)
       .then(() => this.getCartItems())
       .catch(console.error);
     });
