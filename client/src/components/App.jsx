@@ -31,6 +31,12 @@ class App extends React.Component {
   }
 
   render () {
+    let cartRender;
+
+    if (this.state.display === true) {
+      cartRender = <Cart />;
+    }
+
     return (
       <div>
         <nav>
@@ -45,12 +51,14 @@ class App extends React.Component {
               <li><a href="#">Sell</a></li>
               <li><a href="#">My eBay</a></li>
               <li><a href="#">Notifications</a></li>
-              <li><a href="#">Cart</a></li>
+              <li><a href="#" onClick={this.toggleProductsMenu}>Cart</a></li>
             </ul>
           </div>
         </nav>
 
-        <div class="container">
+        {cartRender}
+
+        {/* <div class="container">
           <div class="shopping-cart">
             <div class="shopping-cart-header">
               <div class="shopping-cart-total">
@@ -83,7 +91,7 @@ class App extends React.Component {
             </ul>
             <a href="#" class="button">Checkout</a>
           </div>
-        </div>
+        </div> */}
       </div>
       // <Cart
       //   cart={this.state.cart}
