@@ -23,4 +23,4 @@ app.post('/api/cart/item', (req, res) => {
   .then(() => res.status(201).send());
 });
 
-app.listen(port, () => console.log(`Server is running on ${port}`));
+app.listen(port, host, () => console.log(`Server is running on ${port}`));

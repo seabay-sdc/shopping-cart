@@ -15,7 +15,7 @@ class App extends React.Component {
   }
 
   getCartItems () {
-    axios.get('http://localhost:3005/api/cart/items')
+    axios.get('http://seabay.rosscalimlim.me/api/cart/items')
     .then(({ data }) => this.setState({ cart: data }))
     .catch(console.error);
   }
@@ -23,7 +23,7 @@ class App extends React.Component {
 
   componentDidMount () {
     document.addEventListener('addItemToCart', ({ detail }) => {
-      axios.post('http://localhost:3005/api/cart', detail)
+      axios.post('http://seabay.rosscalimlim.me/api/cart', detail)
       .then(() => this.getCartItems())
       .catch(console.error);
     });
