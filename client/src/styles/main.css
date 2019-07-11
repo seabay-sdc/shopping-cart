@@ -56,6 +56,10 @@ nav ul li a {
   text-decoration: none;
 }
 
+.li-right {
+  border-right: 1px #c7c7c7 solid;
+}
+
 .shopping-cart {
   background: white;
   border: 1px solid #616161;
@@ -67,7 +71,7 @@ nav ul li a {
 }
 
 .shopping-cart-header {
-  border-bottom: 1px solid #E8E8E8;
+  border-bottom: 1px solid #c7c7c7;
   padding-bottom: 30px;
 }
 

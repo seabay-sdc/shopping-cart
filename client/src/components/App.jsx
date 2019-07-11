@@ -50,15 +50,15 @@ class App extends React.Component {
         <nav>
           <div className="container">
             <ul className="navbar-left">
-              <li><a href="#" className="link">Hi! Sign in or Register</a></li>
-              <li><a href="#" className="link">Daily Deals</a></li>
-              <li><a href="#" className="link">Gift Cards</a></li>
+              <li className="li-right"><a href="#" className="link">Hi! Sign in or Register</a></li>
+              <li className="li-right"><a href="#" className="link">Daily Deals</a></li>
+              <li className="li-right"><a href="#" className="link">Gift Cards</a></li>
               <li><a href="#" className="link">Help & Contact</a></li>
             </ul>
             <ul className="navbar-right">
-              <li><a href="#" className="link">Sell</a></li>
-              <li><a href="#" className="link">My eBay</a></li>
-              <li><a href="#" className="link">Notifications</a></li>
+              <li className="li-right"><a href="#" className="link">Sell</a></li>
+              <li className="li-right"><a href="#" className="link">My eBay</a></li>
+              <li className="li-right"><a href="#" className="link">Notifications</a></li>
               <li><a href="#" className="link" onClick={this.toggleProductsMenu}>Cart</a></li>
             </ul>
           </div>
