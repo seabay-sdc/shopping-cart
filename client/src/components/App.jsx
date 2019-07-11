@@ -16,6 +16,7 @@ class App extends React.Component {
     };
 
     this.toggleMenu = this.toggleMenu.bind(this);
+    this.testEventDispatch = this.testEventDispatch.bind(this);
   }
 
   getCartItems () {
@@ -33,6 +34,14 @@ class App extends React.Component {
     });
 
     this.getCartItems();
+  }
+
+  // TODO: remove
+  testEventDispatch () {
+    console.log('Event dispatched from Ross\' component');
+    const detail ='You successfully recieved an event from Ross\' component';
+    const event = new CustomEvent('setCurrentItem', { detail });
+    document.dispatchEvent(event);
   }
 
   toggleMenu () {
@@ -59,7 +68,7 @@ class App extends React.Component {
             <ul className="navbar-right">
               <li className="li-right"><a href="#" className="link">Sell</a></li>
               <li className="li-right"><a href="#" className="link">My eBay</a></li>
-              <li className="li-right"><a href="#" className="link">Notifications</a></li>
+              <li className="li-right"><a href="#" className="link" onClick={this.testEventDispatch}>Notifications</a></li>
               <li><a href="#" className="link" onClick={this.toggleMenu}>Cart</a></li>
             </ul>
           </div>
