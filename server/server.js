@@ -4,7 +4,7 @@ const express = require('express');
 const cors = require('cors');
 const db = require('./database/database');
 const app = express();
-const host = process.env.SERVER_HOST;
+const host = process.env.SERVER_PRI_HOST;
 const port = process.env.SERVER_PORT;
 
 app.use(cors());

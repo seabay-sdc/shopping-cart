@@ -2,7 +2,7 @@ import React from 'react';
 import Cart from './Cart.jsx';
 import axios from 'axios';
 
-const host = process.env.SERVER_HOST;
+const host = process.env.SERVER_PUB_HOST;
 const port = process.env.SERVER_PORT;
 const uri = `http://${host}:${port}`;
 
