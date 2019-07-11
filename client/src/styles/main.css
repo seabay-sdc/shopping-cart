@@ -125,6 +125,10 @@ nav ul li a {
   text-decoration: none;
 }
 
+.button:hover {
+  background: #0670BA;
+}
+
 .clearfix:after {
   content: "";
   display: table;
