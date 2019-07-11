@@ -1,13 +1,20 @@
+:root {
+  --main-color: #333333;
+  --hover-color: #0654ba;
+  --light-text: #ABB0BE;
+}
+
 * {
   font-family: 'Roboto', sans-serif;
 }
 
 nav {
-  font-size: 14px;
   padding: 0px 0 10px 0;
 }
 
 a {
+  color: #333333;
+  cursor: pointer;
   text-decoration: none;
 }
 
@@ -15,9 +22,14 @@ a:visited {
   text-decoration: none;
 }
 
+a:hover {
+  color: var(--hover-color);
+}
+
 .container {
+  height: 50px;
   margin: auto;
-  width: 60%;
+  width: 80%;
 }
 
 .navbar-left {
@@ -34,6 +46,7 @@ nav ul {
 
 nav ul li {
   display: inline;
+  font-size: 12px;
   padding-left: 10px;
   padding-right: 10px;
   text-decoration: none;
@@ -50,7 +63,7 @@ nav ul li a {
   float: right;
   padding: 15px;
   position: relative;
-  width: 300px;
+  width: 250px;
 }
 
 .shopping-cart-header {
@@ -59,7 +72,9 @@ nav ul li a {
 }
 
 .shopping-cart-total {
+  color: var(--main-color);
   float: right;
+  font-size: 18px;
 }
 
 .shopping-cart-items {
@@ -77,22 +92,17 @@ nav ul li a {
 }
 
 .item-picture {
-  width: 80px;
+  width: 50px;
 }
 
 .item-name {
   display: block;
-  padding-top: 10px;
+  padding: 5px 0 10px 0;
   font-size: 16px;
 }
 
 .item-price {
-  /* color: $main-color; */
-  margin-right: 8px;
-}
-
-.item-quantity {
-  /* color: $light-text; */
+  color: var(main-color);
 }
 
 .button {
