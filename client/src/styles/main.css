@@ -1,23 +1,35 @@
+:root {
+  --main-color: #333333;
+  --hover-color: #0654ba;
+  --light-text: #ABB0BE;
+}
+
 * {
   font-family: 'Roboto', sans-serif;
 }
 
 nav {
-  font-size: 14px;
   padding: 0px 0 10px 0;
 }
 
-a {
+.link {
+  color: #333333;
+  cursor: pointer;
   text-decoration: none;
 }
 
-a:visited {
+.link:visited {
   text-decoration: none;
+}
+
+.link:hover {
+  color: var(--hover-color);
 }
 
 .container {
+  height: 40px;
   margin: auto;
-  width: 60%;
+  width: 70%;
 }
 
 .navbar-left {
@@ -34,6 +46,7 @@ nav ul {
 
 nav ul li {
   display: inline;
+  font-size: 13px;
   padding-left: 10px;
   padding-right: 10px;
   text-decoration: none;
@@ -43,6 +56,10 @@ nav ul li a {
   text-decoration: none;
 }
 
+.li-right {
+  border-right: 1px #c7c7c7 solid;
+}
+
 .shopping-cart {
   background: white;
   border: 1px solid #616161;
@@ -50,20 +67,24 @@ nav ul li a {
   float: right;
   padding: 15px;
   position: relative;
-  width: 300px;
+  width: 250px;
 }
 
 .shopping-cart-header {
-  border-bottom: 1px solid #E8E8E8;
+  border-bottom: 1px solid #c7c7c7;
   padding-bottom: 30px;
 }
 
 .shopping-cart-total {
-  float: right;
+  color: var(--main-color);
+  float: left;
+  font-size: 16px;
+  margin-left: 10px;
 }
 
 .shopping-cart-items {
-  padding: 10px 0px 0px 20px;
+  margin-top: 5px;
+  padding: 10px 0px 0px 10px;
 }
 
 .shopping-cart-items li {
@@ -77,34 +98,39 @@ nav ul li a {
 }
 
 .item-picture {
-  width: 80px;
+  height: 60px;
+  object-fit: cover;
+  width: 50px;
 }
 
 .item-name {
   display: block;
-  padding-top: 10px;
-  font-size: 16px;
+  padding: 5px 0 10px 0;
+  font-size: 15px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .item-price {
-  /* color: $main-color; */
-  margin-right: 8px;
-}
-
-.item-quantity {
-  /* color: $light-text; */
+  color: var(--main-color);
+  font-size: 13px;
 }
 
 .button {
-  background: #6394F8;
+  background: #0654ba;
   border-radius: 3px;
   color:white;
   display: block;
   font-size: 16px;
-  margin: 0px 20px;
+  margin: 0 5px;
   padding: 12px;
   text-align: center;
   text-decoration: none;
+}
+
+.button:hover {
+  background: #0670BA;
 }
 
 .clearfix:after {
