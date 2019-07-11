@@ -1,3 +1,11 @@
+const webpack = require('webpack');
+const env = require('dotenv').config().parsed;
+
+const envKeys = Object.keys(env).reduce((prev, next) => {
+  prev[`process.env.${next}`] = JSON.stringify(env[next]);
+  return prev;
+}, {});
+
 module.exports = {
   entry: __dirname + '/client/src/index.jsx',
 
@@ -24,5 +32,9 @@ module.exports = {
     path: __dirname + '/client/dist',
     filename: 'bundle.js',
     publicPath: '/'
-  }
+  },
+
+  plugins: [
+    new webpack.DefinePlugin(envKeys),
+  ],
 }

@@ -2,6 +2,10 @@ import React from 'react';
 import Cart from './Cart.jsx';
 import axios from 'axios';
 
+const host = process.env.SERVER_HOST;
+const port = process.env.SERVER_PORT;
+const uri = `${host}:${port}`;
+
 class App extends React.Component {
   constructor () {
     super();
@@ -15,15 +19,14 @@ class App extends React.Component {
   }
 
   getCartItems () {
-    axios.get('http://seabay.rosscalimlim.me/api/cart/items')
+    axios.get(`${uri}/api/cart/items`)
     .then(({ data }) => this.setState({ cart: data }))
     .catch(console.error);
   }
 
-
   componentDidMount () {
     document.addEventListener('addItemToCart', ({ detail }) => {
-      axios.post('http://seabay.rosscalimlim.me/api/cart', detail)
+      axios.post(`${uri}/api/cart`, detail)
       .then(() => this.getCartItems())
       .catch(console.error);
     });
