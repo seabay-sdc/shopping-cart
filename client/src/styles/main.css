@@ -12,17 +12,17 @@ nav {
   padding: 0px 0 10px 0;
 }
 
-a {
+.link a {
   color: #333333;
   cursor: pointer;
   text-decoration: none;
 }
 
-a:visited {
+.link a:visited {
   text-decoration: none;
 }
 
-a:hover {
+.link a:hover {
   color: var(--hover-color);
 }
 
@@ -74,11 +74,11 @@ nav ul li a {
 .shopping-cart-total {
   color: var(--main-color);
   float: right;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .shopping-cart-items {
-  padding: 10px 0px 0px 20px;
+  padding: 10px 0px 0px 10px;
 }
 
 .shopping-cart-items li {
@@ -98,11 +98,15 @@ nav ul li a {
 .item-name {
   display: block;
   padding: 5px 0 10px 0;
-  font-size: 16px;
+  font-size: 15px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .item-price {
-  color: var(main-color);
+  color: var(--main-color);
+  font-size: 13px;
 }
 
 .button {
