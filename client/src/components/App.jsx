@@ -2,8 +2,8 @@ import React from 'react';
 import Cart from './Cart.jsx';
 import axios from 'axios';
 
-const host = process.env.SERVER_PUB_HOST;
-const port = process.env.SERVER_PORT;
+const host = process.env.API_HOST;
+const port = process.env.API_PORT;
 const uri = `http://${host}:${port}`;
 
 class App extends React.Component {
