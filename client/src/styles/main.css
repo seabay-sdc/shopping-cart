@@ -12,17 +12,17 @@ nav {
   padding: 0px 0 10px 0;
 }
 
-.link a {
+.link {
   color: #333333;
   cursor: pointer;
   text-decoration: none;
 }
 
-.link a:visited {
+.link:visited {
   text-decoration: none;
 }
 
-.link a:hover {
+.link:hover {
   color: var(--hover-color);
 }
 
