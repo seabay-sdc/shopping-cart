@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('client/dist'));
 
-app.get(`/api/cart/items`, (req, res) => {
+app.get('/api/cart/items', (req, res) => {
   db.getCartItems()
   .then((cartItems) => res.status(200).send(cartItems));
 });
