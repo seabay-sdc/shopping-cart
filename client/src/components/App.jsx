@@ -15,7 +15,7 @@ class App extends React.Component {
       display: false,
     };
 
-    this.toggleProductsMenu = this.toggleProductsMenu.bind(this);
+    this.toggleMenu = this.toggleMenu.bind(this);
   }
 
   getCartItems () {
@@ -24,7 +24,8 @@ class App extends React.Component {
     .catch(console.error);
   }
 
-  componentDidMount () {
+  componentWillMount () {
+    // populate cart
     document.addEventListener('addItemToCart', ({ detail }) => {
       axios.post(`${uri}/api/cart`, detail)
       .then(() => this.getCartItems())
@@ -34,7 +35,7 @@ class App extends React.Component {
     this.getCartItems();
   }
 
-  toggleProductsMenu () {
+  toggleMenu () {
     this.setState({ display: !this.state.display });
   }
 
@@ -42,7 +43,7 @@ class App extends React.Component {
     let cartRender;
 
     if (this.state.display === true) {
-      cartRender = <Cart cart={this.state.cart} />;
+      cartRender = <Cart cart={this.state.cart} toggleMenu={this.toggleMenu} />;
     }
 
     return (
@@ -59,7 +60,7 @@ class App extends React.Component {
               <li className="li-right"><a href="#" className="link">Sell</a></li>
               <li className="li-right"><a href="#" className="link">My eBay</a></li>
               <li className="li-right"><a href="#" className="link">Notifications</a></li>
-              <li><a href="#" className="link" onClick={this.toggleProductsMenu}>Cart</a></li>
+              <li><a href="#" className="link" onClick={this.toggleMenu}>Cart</a></li>
             </ul>
           </div>
         </nav>
