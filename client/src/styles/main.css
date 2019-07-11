@@ -29,7 +29,7 @@ nav {
 .container {
   height: 50px;
   margin: auto;
-  width: 80%;
+  width: 70%;
 }
 
 .navbar-left {
@@ -46,7 +46,7 @@ nav ul {
 
 nav ul li {
   display: inline;
-  font-size: 12px;
+  font-size: 13px;
   padding-left: 10px;
   padding-right: 10px;
   text-decoration: none;
@@ -73,11 +73,13 @@ nav ul li a {
 
 .shopping-cart-total {
   color: var(--main-color);
-  float: right;
+  float: left;
   font-size: 16px;
+  margin-left: 10px;
 }
 
 .shopping-cart-items {
+  margin-top: 5px;
   padding: 10px 0px 0px 10px;
 }
 
@@ -92,6 +94,8 @@ nav ul li a {
 }
 
 .item-picture {
+  height: 60px;
+  object-fit: cover;
   width: 50px;
 }
 
@@ -110,12 +114,12 @@ nav ul li a {
 }
 
 .button {
-  background: #6394F8;
+  background: #0654ba;
   border-radius: 3px;
   color:white;
   display: block;
   font-size: 16px;
-  margin: 0px 20px;
+  margin: 0 5px;
   padding: 12px;
   text-align: center;
   text-decoration: none;
