@@ -47,7 +47,7 @@ class App extends React.Component {
     }
 
     return (
-      <div>
+      <div className="header">
         <nav>
           <div className="container">
             <ul className="navbar-left">
