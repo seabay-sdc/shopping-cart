@@ -2,6 +2,7 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const compression = require('compression');
 const db = require('./database/database');
 const app = express();
 const host = process.env.SERVER_HOST;
