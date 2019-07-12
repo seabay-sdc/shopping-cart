@@ -5,20 +5,17 @@ import onClickOutside from 'react-onclickoutside';
 class Cart extends React.Component {
   constructor (props) {
     super(props);
-    this.cart = props.cart;
-    this.toggleMenu = props.toggleMenu;
   }
 
   handleClickOutside (e) {
     if (e.target.id === "cart") {
       return;
     }
-    this.toggleMenu();
+    this.props.toggleMenu();
   }
 
   render () {
-    const total = this.cart.reduce((sum, item) => sum += item.price, 0);
-
+    const total = this.props.cart.reduce((sum, item) => sum += item.price, 0);
     return (
       <div className="container">
         <div className="shopping-cart">
@@ -28,7 +25,7 @@ class Cart extends React.Component {
               <span className="main-color-text">${total}</span>
             </div>
           </div>
-          <Products cart={this.cart} />
+          <Products cart={this.props.cart} toggleMenu={this.props.toggleMenu} setCurrentItem={this.props.setCurrentItem} />
         </div>
       </div>
     );

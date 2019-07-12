@@ -16,7 +16,7 @@ class App extends React.Component {
     };
 
     this.toggleMenu = this.toggleMenu.bind(this);
-    this.testEventDispatch = this.testEventDispatch.bind(this);
+    this.setCurrentItem = this.setCurrentItem.bind(this);
   }
 
   getCartItems () {
@@ -36,12 +36,14 @@ class App extends React.Component {
     this.getCartItems();
   }
 
-  // TODO: remove
-  testEventDispatch () {
-    const detail = {
-      detail: 'You successfully recieved an event from Ross\' component'
-    };
-    const event = new CustomEvent('testEvent', detail);
+  componentWillUnmount () {
+    document.removeEventListener('addItemToCart');
+  }
+
+  setCurrentItem (id) {
+    console.log('setCurrentItem: ', id);
+    const detail = { detail: id };
+    const event = new CustomEvent('setCurrentItem', detail);
     document.dispatchEvent(event);
   }
 
@@ -53,7 +55,7 @@ class App extends React.Component {
     let cartRender;
 
     if (this.state.display === true) {
-      cartRender = <Cart cart={this.state.cart} toggleMenu={this.toggleMenu} />;
+      cartRender = <Cart cart={this.state.cart} toggleMenu={this.toggleMenu} setCurrentItem={this.setCurrentItem} />;
     }
 
     return (
@@ -69,8 +71,8 @@ class App extends React.Component {
             <ul className="navbar-right">
               <li className="li-right"><a href="#" className="link">Sell</a></li>
               <li className="li-right"><a href="#" className="link">My eBay</a></li>
-              <li className="li-right"><a href="#" className="link" onClick={this.testEventDispatch}>Notifications</a></li>
-              <li><a href="#" id="cart" className="link" onClick={this.toggleMenu}>Cart</a></li>
+              <li className="li-right"><a href="#" className="link">Notifications</a></li>
+              <li><a href="#" id="cart" className="link" onClick={this.toggleMenu} >Cart</a></li>
             </ul>
           </div>
         </nav>
