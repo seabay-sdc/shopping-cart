@@ -10,6 +10,9 @@ class Cart extends React.Component {
   }
 
   handleClickOutside (e) {
+    if (e.target.id === "cart") {
+      return;
+    }
     this.toggleMenu();
   }
 

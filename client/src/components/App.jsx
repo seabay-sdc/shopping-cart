@@ -70,7 +70,7 @@ class App extends React.Component {
               <li className="li-right"><a href="#" className="link">Sell</a></li>
               <li className="li-right"><a href="#" className="link">My eBay</a></li>
               <li className="li-right"><a href="#" className="link" onClick={this.testEventDispatch}>Notifications</a></li>
-              <li><a href="#" className="link" onClick={this.toggleMenu}>Cart</a></li>
+              <li><a href="#" id="cart" className="link" onClick={this.toggleMenu}>Cart</a></li>
             </ul>
           </div>
         </nav>
