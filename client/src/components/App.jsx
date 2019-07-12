@@ -36,6 +36,10 @@ class App extends React.Component {
     this.getCartItems();
   }
 
+  componentWillUnmount () {
+    document.removeEventListener('addItemToCart');
+  }
+
   setCurrentItem (id) {
     console.log('setCurrentItem: ', id);
     const detail = { detail: id };
