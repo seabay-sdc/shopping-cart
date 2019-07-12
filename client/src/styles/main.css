@@ -86,9 +86,9 @@ nav ul li a {
 
 .shopping-cart-total {
   color: var(--main-color);
-  float: left;
-  font-size: 16px;
-  margin-left: 10px;
+  float: right;
+  font-size: 17px;
+  margin: 5px 0;
 }
 
 .shopping-cart-items {
