@@ -3,4 +3,4 @@ import ReactDOM from 'react-dom';
 import App from './components/App.jsx';
 import './styles/main.css';
 
-ReactDOM.render(<App />, document.getElementById('Cart'));
+ReactDOM.render(<App />, document.getElementById('shopping-cart'));
