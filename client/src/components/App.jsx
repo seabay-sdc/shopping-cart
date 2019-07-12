@@ -33,18 +33,15 @@ class App extends React.Component {
       .catch(console.error);
     });
 
-    document.addEventListener('testEvent', ({ detail }) => console.log(detail));
-
     this.getCartItems();
   }
 
   // TODO: remove
   testEventDispatch () {
-    console.log('Event dispatched from Ross\' component');
     const detail = {
       detail: 'You successfully recieved an event from Ross\' component'
     };
-    const event = new CustomEvent('setCurrentItem', detail);
+    const event = new CustomEvent('testEvent', detail);
     document.dispatchEvent(event);
   }
 
