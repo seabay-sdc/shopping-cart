@@ -7,9 +7,9 @@ const Product = ({ product, toggleMenu, setCurrentItem }) => {
   };
   return (
     <li className="clearfix">
-      <img className="item-picture link" src={product.img1_url} alt="item1" />
+      <img id={product.id} className="item-picture link" src={product.img1_url} alt="item1" onClick={onClick} />
       <span id={product.id} className="item-name link" onClick={onClick}>{product.name}</span>
-      <span id={product.id} className="item-price" onClick={onClick}>${product.price}</span>
+      <span className="item-price" >${product.price}</span>
     </li>
   );
 };

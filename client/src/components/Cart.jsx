@@ -11,7 +11,7 @@ class Cart extends React.Component {
     if (e.target.id === "cart") {
       return;
     }
-    this.toggleMenu();
+    this.props.toggleMenu();
   }
 
   render () {

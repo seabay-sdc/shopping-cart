@@ -37,7 +37,7 @@ class App extends React.Component {
   }
 
   setCurrentItem (id) {
-    console.log(id);
+    console.log('setCurrentItem: ', id);
     const detail = { detail: id };
     const event = new CustomEvent('setCurrentItem', detail);
     document.dispatchEvent(event);
@@ -67,7 +67,7 @@ class App extends React.Component {
             <ul className="navbar-right">
               <li className="li-right"><a href="#" className="link">Sell</a></li>
               <li className="li-right"><a href="#" className="link">My eBay</a></li>
-              <li className="li-right"><a href="#" className="link" onClick={this.setCurrentItem}>Notifications</a></li>
+              <li className="li-right"><a href="#" className="link">Notifications</a></li>
               <li><a href="#" id="cart" className="link" onClick={this.toggleMenu} >Cart</a></li>
             </ul>
           </div>

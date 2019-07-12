@@ -114,9 +114,10 @@ nav ul li a {
 
 .item-name {
   display: block;
-  padding: 5px 0 10px 0;
   font-size: 15px;
+  margin: 5px 0 10px 0;
   overflow: hidden;
+  /* padding: 5px 0 10px 0; */
   text-overflow: ellipsis;
   white-space: nowrap;
 }
