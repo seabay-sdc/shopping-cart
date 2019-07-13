@@ -25,6 +25,19 @@ const CartItemSchema = new Schema({
 const Products = mongoose.model('product', ProductSchema);
 const CartItems = mongoose.model('cart_item', CartItemSchema);
 
+// cart methods
+const cart = {
+  get: (filter = {}) => {
+    return CartItems.find(filter).exec();
+  },
+  add: () => {},
+};
+
+const products = {
+
+};
+
+
 const getCartItems = () => {
   return CartItems.find({})
   .catch(console.error);
@@ -42,4 +55,4 @@ const findProductById = (id) => {
   .catch(console.error);
 };
 
-module.exports = { getCartItems, addItemsToCart, findProductById };
+module.exports = { cart, products };
