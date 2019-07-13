@@ -49,6 +49,7 @@ class App extends React.Component {
 
   toggleMenu () {
     this.setState({ display: !this.state.display });
+    this.getCartItems();
   }
 
   render () {
