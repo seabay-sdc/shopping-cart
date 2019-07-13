@@ -31,14 +31,16 @@ const cart = {
     return CartItems.find(item).exec();
   },
   add: (item) => {
-    return Products.find(item).exec()
+    return products.get(item)
       .then((products) => CartItems.insertMany(products))
       .catch(console.error);
   },
 };
 
 const products = {
-
+  get: (item = {}) => {
+    return Products.find(item).exec();
+  },
 };
 
 
