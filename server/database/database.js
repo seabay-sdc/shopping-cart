@@ -37,28 +37,11 @@ const cart = {
   },
 };
 
+// product methods
 const products = {
   get: (item = {}) => {
     return Products.find(item).exec();
   },
-};
-
-
-const getCartItems = () => {
-  return CartItems.find({})
-  .catch(console.error);
-};
-
-const addItemsToCart = (item) => {
-  return CartItems.find(item)
-  .then((resultArray) => resultArray.length > 0)
-  .then((exists) => exists ? null : CartItems.insertMany([ item ]))
-  .catch(console.error);
-}
-
-const findProductById = (id) => {
-  return Products.find({ id: id })
-  .catch(console.error);
 };
 
 module.exports = { cart, products };

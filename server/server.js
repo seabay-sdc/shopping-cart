@@ -35,12 +35,18 @@ app.post('/api/cart/items/', (req, res) => {
     .catch((err) => res.status(400).send());
 });
 
+// http get /api/products/ --> all products
+app.get('/api/products', (req, res) => {
+  db.products.get()
+    .then((products) => res.status(200).send(products))
+    .catch((err) => res.status(400).send());
+});
 
-
-app.post('/api/cart/item', (req, res) => {
-  db.findProductById(req.body.id)
-    .then(([ item ]) => db.addItemsToCart(item))
-    .then(() => res.status(201).send());
+// http get /api/products/{id} --> dingle product from products
+app.get('/api/products/:id', (req, res) => {
+  db.products.get({ id: req.params.id })
+    .then((product) => res.status(200).send(product))
+    .catch((err) => res.status(400).send());
 });
 
 app.listen(port, host, () => console.log(`Server is running on ${port}`));
