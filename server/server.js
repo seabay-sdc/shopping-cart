@@ -35,6 +35,13 @@ app.post('/api/cart/items/', (req, res) => {
     .catch((err) => res.status(400).send());
 });
 
+// http delete /api/cart/items/{id} --> delete single item from cart
+app.delete('/api/cart/items/:id', (req, res) => {
+  db.cart.remove({ id: req.params.id })
+    .then(() => res.status(200).send())
+    .catch((err) => res.status(400).send());
+});
+
 // http get /api/products/ --> all products
 app.get('/api/products', (req, res) => {
   db.products.get()

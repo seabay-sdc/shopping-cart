@@ -35,6 +35,9 @@ const cart = {
       .then((products) => CartItems.insertMany(products))
       .catch(console.error);
   },
+  remove: (item) => {
+    return CartItems.deleteOne(item).exec();
+  },
 };
 
 // product methods
