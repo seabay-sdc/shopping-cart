@@ -27,10 +27,14 @@ const CartItems = mongoose.model('cart_item', CartItemSchema);
 
 // cart methods
 const cart = {
-  get: (filter = {}) => {
-    return CartItems.find(filter).exec();
+  get: (item = {}) => {
+    return CartItems.find(item).exec();
   },
-  add: () => {},
+  add: (item) => {
+    return Products.find(item).exec()
+      .then((products) => CartItems.insertMany(products))
+      .catch(console.error);
+  },
 };
 
 const products = {
