@@ -25,21 +25,26 @@ const CartItemSchema = new Schema({
 const Products = mongoose.model('product', ProductSchema);
 const CartItems = mongoose.model('cart_item', CartItemSchema);
 
-const getCartItems = () => {
-  return CartItems.find({})
-  .catch(console.error);
+// cart methods
+const cart = {
+  get: (item = {}) => {
+    return CartItems.find(item).exec();
+  },
+  add: (item) => {
+    return products.get(item)
+      .then((products) => CartItems.insertMany(products))
+      .catch(console.error);
+  },
+  remove: (item) => {
+    return CartItems.deleteOne(item).exec();
+  },
 };
 
-const addItemsToCart = (item) => {
-  return CartItems.find(item)
-  .then((resultArray) => resultArray.length > 0)
-  .then((exists) => exists ? null : CartItems.insertMany([ item ]))
-  .catch(console.error);
-}
-
-const findProductById = (id) => {
-  return Products.find({ id: id })
-  .catch(console.error);
+// product methods
+const products = {
+  get: (item = {}) => {
+    return Products.find(item).exec();
+  },
 };
 
-module.exports = { getCartItems, addItemsToCart, findProductById };
+module.exports = { cart, products };
