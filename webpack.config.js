@@ -9,6 +9,8 @@ const envKeys = Object.keys(env).reduce((prev, next) => {
 module.exports = {
   entry: __dirname + '/client/src/index.jsx',
 
+  mode: process.env.NODE_ENV,
+
   module: {
     rules: [
       {
