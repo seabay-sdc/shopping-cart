@@ -1,35 +1,31 @@
 import React from 'react';
+import Dialog from '@material-ui/core/Dialog/';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import DialogContent from '@material-ui/core/DialogContent';
+
 import Products from './Products.jsx';
-import onClickOutside from 'react-onclickoutside';
 
-class Cart extends React.Component {
-  constructor (props) {
-    super(props);
-  }
+const Cart = ({ cart, display, toggleMenu, setCurrentItem }) => {
+  const total = cart.reduce((sum, item) => sum += item.price, 0);
+  return (
+    <Dialog
+      open={display}
+      onClose={toggleMenu}
+      scroll='paper'
+    >
+      <DialogTitle>
+        <div>Shopping Cart</div>
+        <div>Total: {total}</div>
+      </DialogTitle>
+      <DialogContent>
+        <Products
+          cart={cart}
+          toggleMenu={toggleMenu}
+          setCurrentItem={setCurrentItem}
+        />
+      </DialogContent>
+    </Dialog>
+  );
+}
 
-  handleClickOutside (e) {
-    if (e.target.id === "cart") {
-      return;
-    }
-    this.props.toggleMenu();
-  }
-
-  render () {
-    const total = this.props.cart.reduce((sum, item) => sum += item.price, 0);
-    return (
-      <div className="container">
-        <div className="shopping-cart">
-          <div className="shopping-cart-header">
-            <div className="shopping-cart-total">
-              <span className="lighter-text">Total: </span>
-              <span className="main-color-text">${total}</span>
-            </div>
-          </div>
-          <Products cart={this.props.cart} toggleMenu={this.props.toggleMenu} setCurrentItem={this.props.setCurrentItem} />
-        </div>
-      </div>
-    );
-  }
-};
-
-export default onClickOutside(Cart);
+export default Cart;
