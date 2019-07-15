@@ -41,8 +41,7 @@ class App extends React.Component {
   }
 
   setCurrentItem (id) {
-    console.log('setCurrentItem: ', id);
-    const detail = { detail: id };
+    const detail = { detail: { id } };
     const event = new CustomEvent('setCurrentItem', detail);
     document.dispatchEvent(event);
   }
