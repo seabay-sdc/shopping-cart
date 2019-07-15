@@ -14,8 +14,7 @@ const Cart = ({ cart, display, toggleMenu, setCurrentItem }) => {
       scroll='paper'
     >
       <DialogTitle>
-        <div>Shopping Cart</div>
-        <div>Total: {total}</div>
+        <div className="navbar-left">Shopping Cart</div>
       </DialogTitle>
       <DialogContent>
         <Products
@@ -23,6 +22,7 @@ const Cart = ({ cart, display, toggleMenu, setCurrentItem }) => {
           toggleMenu={toggleMenu}
           setCurrentItem={setCurrentItem}
         />
+        <div className="shopping-cart-total">Total: {total}</div>
       </DialogContent>
     </Dialog>
   );

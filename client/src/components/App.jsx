@@ -68,7 +68,7 @@ class App extends React.Component {
     return (
       <div className="header">
         <nav>
-          <div className="container">
+          <div className="container-shopping-cart">
             <ul className="navbar-left">
               <li className="li-right"><a className="link">Hi! Sign in or Register</a></li>
               <li className="li-right"><a className="link">Daily Deals</a></li>

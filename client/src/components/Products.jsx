@@ -11,7 +11,6 @@ const Products = ({ cart, toggleMenu, setCurrentItem }) => {
           );
         })}
       </ul>
-      <a href="#" className="button">Go to checkout</a>
     </>
   );
 };
