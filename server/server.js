@@ -5,7 +5,6 @@ const cors = require('cors');
 const compression = require('compression');
 const db = require('./database/database');
 const app = express();
-const host = process.env.SERVER_HOST;
 const port = process.env.SERVER_PORT;
 
 app.use(cors());
@@ -56,4 +55,4 @@ app.get('/api/products/:id', (req, res) => {
     .catch((err) => res.status(400).send());
 });
 
-app.listen(port, host, () => console.log(`Server is running on ${port}`));
+app.listen(port, () => console.log(`Server is running on ${port}`));
