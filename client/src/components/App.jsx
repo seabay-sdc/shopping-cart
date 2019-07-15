@@ -1,5 +1,4 @@
 import React from 'react';
-import Modal from '@material-ui/core/Modal/';
 import Cart from './Cart.jsx';
 import axios from 'axios';
 
@@ -57,7 +56,13 @@ class App extends React.Component {
     let cartRender;
 
     if (this.state.display === true) {
-      cartRender = <Cart cart={this.state.cart} toggleMenu={this.toggleMenu} setCurrentItem={this.setCurrentItem} />;
+      cartRender =
+      <Cart
+        cart={this.state.cart}
+        display={this.state.display}
+        setCurrentItem={this.setCurrentItem}
+        toggleMenu={this.toggleMenu}
+      />;
     }
 
     return (
