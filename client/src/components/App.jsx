@@ -1,4 +1,5 @@
 import React from 'react';
+import Modal from '@material-ui/core/Modal/';
 import Cart from './Cart.jsx';
 import axios from 'axios';
 
