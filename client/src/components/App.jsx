@@ -28,8 +28,6 @@ class App extends React.Component {
   componentWillMount () {
     // populate cart
     document.addEventListener('addToCart', ({ detail }) => {
-      const id = detail.id;
-      const qty = detail.quantity;
       axios.post(`${uri}/api/cart/items/`, detail)
       .then(() => this.getCartItems())
       .catch(console.error);

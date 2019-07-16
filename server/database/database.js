@@ -32,7 +32,6 @@ const cart = {
     return CartItems.find(item).exec();
   },
   add: (item) => {
-    console.log('item is ', item);
     return products.get({ id: item.id })
       .then((products) => {
         const cartItem = JSON.parse(JSON.stringify(products[0]));
