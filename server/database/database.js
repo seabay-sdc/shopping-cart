@@ -37,12 +37,16 @@ const cart = {
         return cart.get({ id: product.id })
           .then((query) => [ query, product ]);
       })
-      .then(([ query, product ]) => {
+      .then(([ [ query ], product ]) => {
         if (query.length === 0) {
           const cartItem = JSON.parse(JSON.stringify(product));
           cartItem.quantity = item.quantity;
           CartItems.create(cartItem);
           return;
+        } else {
+          const newQty = query.quantity + item.quantity;
+          CartItems.updateOne({ id: product.id }, { quantity: newQty })
+            .then(console.log);
         }
       })
       .catch(console.error);
