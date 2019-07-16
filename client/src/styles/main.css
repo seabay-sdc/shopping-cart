@@ -1,7 +1,7 @@
 :root {
   --main-color: #333333;
   --hover-color: #0654ba;
-  --light-text: #ABB0BE;
+  --light-text: rgb(141, 145, 156);
 }
 
 * {
@@ -65,7 +65,7 @@ nav ul li a {
 .li-grid {
   display: grid;
   font-size: 18px;
-  grid-template-columns: 20% 70% 10%;
+  grid-template-columns: 15% 65% auto;
 }
 
 .shopping-cart {
@@ -80,14 +80,13 @@ nav ul li a {
   right: 65px;
   top: 35px;
   width: 250px;
-  z-index: 999999999999999999999999;
 }
 
 .shopping-cart-total {
   border-top: 1px #c7c7c7 solid;
   color: var(--main-color);
-  font-size: 23px;
-  padding: 10px;
+  font-size: 20px;
+  padding: 10px 0 10px 0;
   text-align: right;
 }
 
@@ -106,6 +105,11 @@ nav ul li a {
   margin-right: 12px;
 }
 
+.item-empty {
+  color: var(--light-text);
+  font-style: italic;
+}
+
 .item-picture {
   height: 80px;
   object-fit: cover;
@@ -114,14 +118,21 @@ nav ul li a {
 
 .item-name {
   display: block;
-  margin: 5px 0 10px 0;
+  margin: 10px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
+.item-quantity {
+  color: var(--light-text);
+  font-size: 15px;
+  margin: 10px;
+}
+
 .item-price {
   color: var(--main-color);
+  margin: 10px 0;
   text-align: right;
 }
 
