@@ -32,7 +32,7 @@ const Cart = ({ cart, display, toggleMenu, setCurrentItem }) => {
           <Button onClick={toggleMenu} color="primary">
             Cancel
           </Button>
-          <Button onClick={toggleMenu} color="primary">
+          <Button onClick={toggleMenu} color="primary" variant="contained">
             Proceed to Checkout
           </Button>
         </DialogActions>

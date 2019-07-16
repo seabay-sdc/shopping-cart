@@ -62,12 +62,19 @@ nav ul li a {
   border-right: 1px #c7c7c7 solid;
 }
 
+.li-grid {
+  display: grid;
+  font-size: 18px;
+  grid-template-columns: 20% 70% 10%;
+}
+
 .shopping-cart {
   background: white;
   border: 1px solid #616161;
   border-radius: 3px;
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
   float: right;
+  font-size: 25px;
   padding: 15px;
   position: absolute;
   right: 65px;
@@ -79,7 +86,7 @@ nav ul li a {
 .shopping-cart-total {
   border-top: 1px #c7c7c7 solid;
   color: var(--main-color);
-  font-size: 19px;
+  font-size: 23px;
   padding: 10px;
   text-align: right;
 }
@@ -107,29 +114,15 @@ nav ul li a {
 
 .item-name {
   display: block;
-  font-size: 15px;
   margin: 5px 0 10px 0;
   overflow: hidden;
-  /* padding: 5px 0 10px 0; */
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 .item-price {
   color: var(--main-color);
-  font-size: 13px;
-}
-
-.button {
-  background: #0654ba;
-  border-radius: 3px;
-  color:white;
-  display: block;
-  font-size: 16px;
-  margin: 0 5px;
-  padding: 12px;
-  text-align: center;
-  text-decoration: none;
+  text-align: right;
 }
 
 .button:hover {
