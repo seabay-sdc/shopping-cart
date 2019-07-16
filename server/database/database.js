@@ -19,7 +19,8 @@ const CartItemSchema = new Schema({
   name: String,
   price: Number,
   category: String,
-  img1_url: String
+  img1_url: String,
+  quantity: Number,
 });
 
 const Products = mongoose.model('product', ProductSchema);
@@ -31,8 +32,22 @@ const cart = {
     return CartItems.find(item).exec();
   },
   add: (item) => {
-    return products.get(item)
-      .then((products) => CartItems.insertMany(products))
+    return products.get({ id: item.id })
+      .then(([ product ]) => {
+        return cart.get({ id: product.id })
+          .then((query) => [ query, product ]);
+      })
+      .then(([ query, product ]) => {
+        if (query.length === 0) {
+          const cartItem = JSON.parse(JSON.stringify(product));
+          cartItem.quantity = item.quantity;
+          return CartItems.create(cartItem)
+            .then(console.log);
+        } else {
+          const newQty = query[0].quantity + item.quantity;
+          return CartItems.updateOne({ id: product.id }, { quantity: newQty });
+        }
+      })
       .catch(console.error);
   },
   remove: (item) => {

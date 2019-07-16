@@ -27,8 +27,8 @@ class App extends React.Component {
 
   componentWillMount () {
     // populate cart
-    document.addEventListener('addItemToCart', ({ detail }) => {
-      axios.post(`${uri}/api/cart`, detail)
+    document.addEventListener('addToCart', ({ detail }) => {
+      axios.post(`${uri}/api/cart/items/`, detail)
       .then(() => this.getCartItems())
       .catch(console.error);
     });
@@ -37,7 +37,7 @@ class App extends React.Component {
   }
 
   componentWillUnmount () {
-    document.removeEventListener('addItemToCart');
+    document.removeEventListener('addToCart');
   }
 
   setCurrentItem (id) {
