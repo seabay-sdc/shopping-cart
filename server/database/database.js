@@ -33,10 +33,17 @@ const cart = {
   },
   add: (item) => {
     return products.get({ id: item.id })
-      .then((products) => {
-        const cartItem = JSON.parse(JSON.stringify(products[0]));
-        cartItem.quantity = item.quantity;
-        CartItems.create(cartItem);
+      .then(([ product ]) => {
+        return cart.get({ id: product.id })
+          .then((query) => [ query, product ]);
+      })
+      .then(([ query, product ]) => {
+        if (query.length === 0) {
+          const cartItem = JSON.parse(JSON.stringify(product));
+          cartItem.quantity = item.quantity;
+          CartItems.create(cartItem);
+          return;
+        }
       })
       .catch(console.error);
   },
