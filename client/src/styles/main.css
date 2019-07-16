@@ -65,7 +65,7 @@ nav ul li a {
 .li-grid {
   display: grid;
   font-size: 18px;
-  grid-template-columns: auto 70% 15%;
+  grid-template-columns: 15% 65% auto;
 }
 
 .shopping-cart {
@@ -105,6 +105,11 @@ nav ul li a {
   margin-right: 12px;
 }
 
+.item-empty {
+  color: var(--light-text);
+  font-style: italic;
+}
+
 .item-picture {
   height: 80px;
   object-fit: cover;
@@ -127,7 +132,7 @@ nav ul li a {
 
 .item-price {
   color: var(--main-color);
-  margin: 10px;
+  margin: 10px 0;
   text-align: right;
 }
 

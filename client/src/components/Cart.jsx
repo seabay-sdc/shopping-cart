@@ -25,7 +25,7 @@ const Cart = ({ cart, display, toggleMenu, setCurrentItem }) => {
       scroll='paper'
     >
       <DialogTitle>
-        <div>Your cart</div>
+        <div>Cart</div>
       </DialogTitle>
       <DialogContent>
         <Products
