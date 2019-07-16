@@ -8,7 +8,14 @@ import DialogActions from '@material-ui/core/DialogActions';
 import Products from './Products.jsx';
 
 const Cart = ({ cart, display, toggleMenu, setCurrentItem }) => {
-  const total = cart.reduce((sum, item) => sum += item.price, 0);
+  const formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  });
+  const total = cart.reduce((sum, item) => {
+    return sum += item.price * item.quantity;
+  }, 0);
+  const formattedTotal = formatter.format(total);
   return (
     <Dialog
       open={display}
@@ -26,7 +33,7 @@ const Cart = ({ cart, display, toggleMenu, setCurrentItem }) => {
           toggleMenu={toggleMenu}
           setCurrentItem={setCurrentItem}
         />
-        <div className="shopping-cart-total">Total: {total}</div>
+        <div className="shopping-cart-total">Subtotal: {formattedTotal}</div>
       </DialogContent>
       <DialogActions>
           <Button onClick={toggleMenu} color="primary">
