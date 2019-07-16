@@ -25,7 +25,7 @@ class App extends React.Component {
     .catch(console.error);
   }
 
-  componentWillMount () {
+  componentDidMount () {
     // populate cart
     document.addEventListener('addToCart', ({ detail }) => {
       axios.post(`${uri}/api/cart/items/`, detail)
