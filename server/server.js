@@ -29,7 +29,8 @@ app.get('/api/cart/items/:id', (req, res) => {
 
 // http post /api/cart/items/ --> single item to cart
 app.post('/api/cart/items/', (req, res) => {
-  db.cart.add({ id: req.body.id })
+  console.log(req.body);
+  db.cart.add({ id: req.body.id, quantity: req.body.quantity })
     .then(() => res.status(201).send())
     .catch((err) => res.status(400).send());
 });
