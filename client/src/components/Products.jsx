@@ -2,6 +2,8 @@ import React from 'react';
 import Product from './Product.jsx';
 
 const Products = ({ cart, toggleMenu, setCurrentItem }) => {
+  const noItems = <span className="item-empty">Your cart is empty!</span>
+  const emptyRender = cart.length === 0 ? noItems : null;
   return (
     <>
       <ul className="shopping-cart-items">
@@ -10,6 +12,7 @@ const Products = ({ cart, toggleMenu, setCurrentItem }) => {
             <Product key={`product-${index}`} product={product} toggleMenu={toggleMenu} setCurrentItem={setCurrentItem} />
           );
         })}
+        {emptyRender}
       </ul>
     </>
   );

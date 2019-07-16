@@ -105,6 +105,11 @@ nav ul li a {
   margin-right: 12px;
 }
 
+.item-empty {
+  color: var(--light-text);
+  font-style: italic;
+}
+
 .item-picture {
   height: 80px;
   object-fit: cover;
