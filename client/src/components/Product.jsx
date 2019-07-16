@@ -11,10 +11,10 @@ const Product = ({ product, toggleMenu, setCurrentItem }) => {
   });
   const price = formatter.format(product.price);
   return (
-    <li className="clearfix">
+    <li className="clearfix li-grid">
       <img id={product.id} className="item-picture link" src={product.img1_url} alt="item1" onClick={onClick} />
-      <span id={product.id} className="item-name link" onClick={onClick}>{product.name}</span>
-      <span className="item-price" >{price}</span>
+      <div id={product.id} className="item-name link" onClick={onClick}>{product.name}</div>
+      <div className="item-price" >{price}</div>
     </li>
   );
 };
