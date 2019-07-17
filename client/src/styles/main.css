@@ -27,11 +27,6 @@
   color: var(--hover-color);
 }
 
-.container-shopping-cart {
-  margin: auto;
-  width: 90%;
-}
-
 .navbar-left {
   float: left;
 }
@@ -48,7 +43,7 @@ nav ul {
 
 nav ul li {
   display: inline;
-  font-size: 14px;
+  font-size: 16px;
   padding-left: 10px;
   padding-right: 10px;
   text-decoration: none;
