@@ -3,7 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const compression = require('compression');
-const db = require('./database/database');
+const db = require('./database');
 const app = express();
 const port = process.env.SERVER_PORT;
 
@@ -56,3 +56,5 @@ app.get('/api/products/:id', (req, res) => {
 });
 
 app.listen(port, () => console.log(`Server is running on ${port}`));
+
+module.exports = app;

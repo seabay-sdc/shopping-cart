@@ -1,10 +1,6 @@
 const mongoose = require('mongoose');
-mongoose.connect(process.env.DB_URI, { useNewUrlParser: true })
-.then(() => console.log('DB connected'))
-.catch(console.error);
-const connection =  mongoose.connection;
+const connection = require('./config');
 const Schema = mongoose.Schema;
-const ObjectId = Schema.ObjectId;
 
 const ProductSchema = new Schema({
   id: Number,
@@ -23,8 +19,8 @@ const CartItemSchema = new Schema({
   quantity: Number,
 });
 
-const Products = mongoose.model('product', ProductSchema);
-const CartItems = mongoose.model('cart_item', CartItemSchema);
+const CartItems = connection.model('cart_item', CartItemSchema);
+const Products = connection.model('product', ProductSchema);
 
 // cart methods
 const cart = {
@@ -32,21 +28,22 @@ const cart = {
     return CartItems.find(item).exec();
   },
   add: (item) => {
+    let product;
+    let query;
     return products.get({ id: item.id })
-      .then(([ product ]) => {
-        return cart.get({ id: product.id })
-          .then((query) => [ query, product ]);
-      })
-      .then(([ query, product ]) => {
+      .then(([ productDetails ]) => product = productDetails)
+      .then(() => cart.get({ id: product.id }))
+      .then((cartQuery) => query = cartQuery)
+      .then(() => {
+        const cartItem = JSON.parse(JSON.stringify(product));
+        cartItem.quantity = item.quantity;
+
         if (query.length === 0) {
-          const cartItem = JSON.parse(JSON.stringify(product));
-          cartItem.quantity = item.quantity;
           return CartItems.create(cartItem)
-            .then(console.log);
-        } else {
-          const newQty = query[0].quantity + item.quantity;
-          return CartItems.updateOne({ id: product.id }, { quantity: newQty });
         }
+
+        const newQty = query[0].quantity + item.quantity;
+        return CartItems.updateOne({ id: product.id }, { quantity: newQty });
       })
       .catch(console.error);
   },
