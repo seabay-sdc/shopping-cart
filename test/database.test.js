@@ -3,9 +3,14 @@ const should = require('chai').should();
 const mongoose = require('mongoose');
 const { MongoMemoryServer } = require('mongodb-memory-server');
 const Schema = mongoose.Schema;
-let ProductSchema;
+let CartItems;
 let Products;
-let products;
+
+const products = {
+  get: (item = {}) => {
+    return Products.find(item).exec();
+  },
+};
 
 before('Setup temporary MongoDB server', (done) => {
   mongoServer = new MongoMemoryServer();
@@ -16,7 +21,16 @@ before('Setup temporary MongoDB server', (done) => {
       mongoose.connect(uri, { useNewUrlParser: true })
     })
     .then(() => {
-      ProductSchema = new Schema({
+      const CartItemSchema = new Schema({
+        id: Number,
+        name: String,
+        price: Number,
+        category: String,
+        img1_url: String,
+        quantity: Number,
+      });
+
+      const ProductSchema = new Schema({
         id: Number,
         name: String,
         price: Number,
@@ -24,14 +38,10 @@ before('Setup temporary MongoDB server', (done) => {
         img1_url: String
       });
 
+      CartItems = mongoose.model('cart_item', CartItemSchema);
       Products = mongoose.model('product', ProductSchema);
     })
     .then(() => {
-      products = {
-        get: (item = {}) => {
-          return Products.find(item).exec();
-        },
-      };
     })
     .then(() => done())
     .catch((err) => done(err));
