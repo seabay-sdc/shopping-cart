@@ -62,4 +62,11 @@ const products = {
   },
 };
 
-module.exports = { cart, products };
+module.exports = {
+  Products,
+  CartItems,
+  ProductSchema,
+  CartItemSchema,
+  cart,
+  products
+};
