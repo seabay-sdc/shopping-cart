@@ -1,9 +1,24 @@
 // require expect from chai
-const expect = require('chai').should();
+const should = require('chai').should();
+const mongoose = require('mongoose');
+const { MongoMemoryServer } = require('mongodb-memory-server');
 
-describe('Get tests', () => {
-  beforeEach('Setup server response', () => {})
+let mongoServer;
 
+before('Setup temporary MongoDB server', (done) => {
+  mongoServer = new MongoMemoryServer();
+  mongoServer
+    .getConnectionString()
+    .then((uri) => mongoose.connect(uri, (err) => err ? done(err) : null))
+    .then(() => done());
+});
+
+after('Teardown temporary MongoDB server', () => {
+  mongoose.disconnect();
+  mongoServer.stop();
+});
+
+describe('Cart model methods', () => {
   it('Should assert true to be true', () => {
     (true).should.be.true;
   });
