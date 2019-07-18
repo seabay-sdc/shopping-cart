@@ -1,10 +1,11 @@
 // require expect from chai
 const should = require('chai').should();
 const mongoose = require('mongoose');
-const { MongoMemoryServer } = require('mongodb-memory-server');
 const Schema = mongoose.Schema;
-let CartItems;
-let Products;
+const { MongoMemoryServer } = require('mongodb-memory-server');
+const methods = require('../server/database/index');
+// let CartItems;
+// let Products;
 
 const products = {
   get: (item = {}) => {
@@ -17,7 +18,6 @@ before('Setup temporary MongoDB server', (done) => {
   mongoServer
     .getConnectionString()
     .then((uri) => {
-      console.log('uri is ', uri);
       mongoose.connect(uri, { useNewUrlParser: true })
     })
     .then(() => {
