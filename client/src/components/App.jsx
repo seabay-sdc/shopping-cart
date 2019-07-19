@@ -1,93 +1,75 @@
 import React from 'react';
-import Cart from './Cart.jsx';
-import axios from 'axios';
+import { makeStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Badge from '@material-ui/core/Badge';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import AttachMoney from '@material-ui/icons/AttachMoney'
+import Notifications from '@material-ui/icons/Notifications'
+import AccountCircle from '@material-ui/icons/AccountCircle'
+import ShoppingCart from '@material-ui/icons/ShoppingCart';
 
 const host = process.env.API_HOST;
 const port = process.env.API_PORT;
 const uri = `http://${host}:${port}`;
 
-class App extends React.Component {
-  constructor () {
-    super();
+const useStyles = makeStyles(theme => ({
+  root: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+  },
+}));
 
-    this.state = {
-      cart: [],
-      display: false,
-    };
 
-    this.toggleMenu = this.toggleMenu.bind(this);
-    this.setCurrentItem = this.setCurrentItem.bind(this);
-  }
+const App = function () {
+  const classes = useStyles();
+  return (
+    <div className={classes.root}>
+      <AppBar position="static">
+        <Toolbar>
 
-  getCartItems () {
-    axios.get(`${uri}/api/cart/items`)
-    .then(({ data }) => this.setState({ cart: data }))
-    .catch(console.error);
-  }
+          <Button color="inherit" size="large">
+            Login
+          </Button>
+          <Button color="inherit" size="large">
+            Deals
+          </Button>
+          <Button color="inherit" size="large">
+            Gift Cards
+          </Button>
+          <Button color="inherit" size="large">
+            Help
+          </Button>
 
-  componentDidMount () {
-    // populate cart
-    document.addEventListener('addToCart', ({ detail }) => {
-      axios.post(`${uri}/api/cart/items/`, detail)
-      .then(() => this.getCartItems())
-      .catch(console.error);
-    });
+          <Typography className={classes.title}></Typography>
 
-    this.getCartItems();
-  }
-
-  componentWillUnmount () {
-    document.removeEventListener('addToCart');
-  }
-
-  setCurrentItem (id) {
-    const detail = { detail: { id } };
-    const event = new CustomEvent('setCurrentItem', detail);
-    document.dispatchEvent(event);
-  }
-
-  toggleMenu () {
-    this.setState({ display: !this.state.display });
-    this.getCartItems();
-  }
-
-  render () {
-    let cartRender;
-
-    if (this.state.display === true) {
-      cartRender =
-      <Cart
-        cart={this.state.cart}
-        display={this.state.display}
-        setCurrentItem={this.setCurrentItem}
-        toggleMenu={this.toggleMenu}
-      />;
-    }
-
-    return (
-      <div className="header">
-        <nav>
-          <div className="container-shopping-cart">
-            <ul className="navbar-left">
-              <li className="li-right"><a className="link">Hi! Sign in or Register</a></li>
-              <li className="li-right"><a className="link">Daily Deals</a></li>
-              <li className="li-right"><a className="link">Gift Cards</a></li>
-              <li><a className="link">Help & Contact</a></li>
-            </ul>
-            <ul className="navbar-right">
-              <li className="li-right"><a className="link">Sell</a></li>
-              <li className="li-right"><a className="link">My eBay</a></li>
-              <li className="li-right"><a className="link">Notifications</a></li>
-              <li><a id="cart" className="link" onClick={this.toggleMenu} >Cart</a></li>
-            </ul>
-          </div>
-        </nav>
-
-        {cartRender}
-
-      </div>
-    );
-  }
-}
+          <IconButton color="inherit" aria-label="Sell">
+            <AttachMoney />
+          </IconButton>
+          <IconButton color="inherit" aria-label="Account">
+            <AccountCircle />
+          </IconButton>
+          <IconButton color="inherit" aria-label="Notifications">
+            <Badge badgeContent={2} color="secondary">
+              <Notifications />
+            </Badge>
+          </IconButton>
+          <IconButton color="inherit" aria-label="Cart">
+            <Badge badgeContent={8} color="secondary">
+              <ShoppingCart />
+            </Badge>
+          </IconButton>
+        </Toolbar>
+      </AppBar>
+    </div>
+  );
+};
 
 export default App;
