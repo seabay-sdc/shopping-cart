@@ -5,25 +5,17 @@ const cart = {
   get: (item = {}) => {
     return CartItems.find(item).exec();
   },
-  add: (item) => {
-    let product;
-    let query;
-    return products.get({ id: item.id })
-      .then(([ productDetails ]) => product = productDetails)
-      .then(() => cart.get({ id: product.id }))
-      .then((cartQuery) => query = cartQuery)
-      .then(() => {
-        const cartItem = JSON.parse(JSON.stringify(product));
-        cartItem.quantity = item.quantity;
+  add: async (item) => {
+    const [ product ] = await products.get({ id: item.id });
+    const cartQuery = await cart.get({ id: product.id });
+    const cartItem = { ...product._doc, quantity: item.quantity };
 
-        if (query.length === 0) {
-          return CartItems.create(cartItem)
-        }
-
-        const newQty = query[0].quantity + item.quantity;
-        return CartItems.updateOne({ id: product.id }, { quantity: newQty });
-      })
-      .catch(console.error);
+    return cartQuery.length === 0
+    ? CartItems.create(cartItem)
+    : CartItems.updateOne(
+        { id: product.id },
+        { $inc: { quantity: item.quantity } }
+      );
   },
   remove: (item) => {
     return CartItems.deleteOne(item).exec();
