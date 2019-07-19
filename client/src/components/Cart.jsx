@@ -10,12 +10,8 @@ import Products from './Products.jsx';
 class Cart extends Component {
   constructor (props) {
     super(props);
-
-    this.state = {
-      cart: [],
-    };
   }
-  // cart, display, toggleMenu, setCurrentItem
+  // cart, display, this.props.toggleDisplay, setCurrentItem
 
   format (number) {
     const formatter = new Intl.NumberFormat('en-US', {
@@ -25,13 +21,21 @@ class Cart extends Component {
     return formatter.format(number);
   }
 
+  formatTotal () {
+    const total = this.props.cart.reduce((total, item) => {
+      return total += item.price * item.quantity;
+    }, 0);
+    const formattedTotal = this.format(total);
+    return formattedTotal;
+  }
+
   render () {
     return (
       <Dialog
-        open={display}
+        open={this.props.display}
         fullWidth={true}
         maxWidth="sm"
-        onClose={toggleMenu}
+        onClose={this.props.toggleDisplay}
         scroll='paper'
       >
         <DialogTitle>
@@ -39,17 +43,19 @@ class Cart extends Component {
         </DialogTitle>
         <DialogContent>
           <Products
-            cart={cart}
-            toggleMenu={toggleMenu}
-            setCurrentItem={setCurrentItem}
+            cart={this.props.cart}
+            toggleDisplay={this.props.toggleDisplay}
+            setCurrentItem={this.props.setCurrentItem}
           />
-          <div className="shopping-cart-total">Subtotal: {formattedTotal}</div>
+          <div className="shopping-cart-total">
+            Subtotal: {this.formatTotal}
+          </div>
         </DialogContent>
         <DialogActions>
-            <Button onClick={toggleMenu} color="primary">
+            <Button onClick={this.props.toggleDisplay} color="primary">
               Cancel
             </Button>
-            <Button onClick={toggleMenu} color="primary" variant="contained">
+            <Button onClick={this.props.toggleDisplay} color="primary" variant="contained">
               Proceed to Checkout
             </Button>
           </DialogActions>

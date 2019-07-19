@@ -11,6 +11,7 @@ import AttachMoney from '@material-ui/icons/AttachMoney'
 import Notifications from '@material-ui/icons/Notifications'
 import AccountCircle from '@material-ui/icons/AccountCircle'
 import ShoppingCart from '@material-ui/icons/ShoppingCart';
+import axios from 'axios';
 
 const host = process.env.API_HOST;
 const port = process.env.API_PORT;
@@ -29,9 +30,14 @@ class App extends Component {
   constructor () {
     super();
     this.state = {
+      cart: [],
       display: false,
     };
     this.toggleDisplay = this.toggleDisplay.bind(this);
+  }
+
+  setCurrentItem () {
+    return;
   }
 
   toggleDisplay () {
@@ -40,7 +46,12 @@ class App extends Component {
 
   render () {
     const cartDisplay = this.state.display
-    ? <Cart />
+    ? <Cart
+        cart={this.state.cart}
+        display={this.state.display}
+        setCurrentItem={this.setCurrentItem}
+        toggleDisplay={this.toggleDisplay}
+      />
     : null;
 
     return (
