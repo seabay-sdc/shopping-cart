@@ -1,54 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
+body {
+  margin: 0;
+}
+
 :root {
   --main-color: #333333;
   --hover-color: #0654ba;
   --light-text: rgb(141, 145, 156);
-}
-
-.header {
-  border-bottom: 1px #c7c7c7 solid;
-  height: 30px;
-  padding: 5px 0;
-}
-
-.header nav ul {
-  list-style-type: none;
-  margin: 0;
-  padding-inline-start: 0;
-}
-
-nav ul li {
-  display: inline;
-  padding-left: 10px;
-  padding-right: 10px;
-  text-decoration: none;
-}
-
-nav ul li a {
-  text-decoration: none;
-}
-
-.link {
-  color: #333333;
-  cursor: pointer;
-  text-decoration: none;
-}
-
-.link:visited {
-  text-decoration: none;
-}
-
-.link:hover {
-  color: var(--hover-color);
-}
-
-.navbar-left {
-  float: left;
-}
-
-.navbar-right {
-  float: right;
 }
 
 .li-right {
@@ -61,7 +20,7 @@ nav ul li a {
   grid-template-columns: 15% 65% auto;
 }
 
-.container-shopping-cart {
+.shopping-cart {
   font-family: Roboto, sans-serif;
 }
 
@@ -121,10 +80,4 @@ nav ul li a {
 
 .button:hover {
   background: #0670BA;
-}
-
-.clearfix:after {
-  content: "";
-  display: table;
-  clear: both;
 }

@@ -1,22 +1,48 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Cart from './Cart.jsx';
+import { withStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Badge from '@material-ui/core/Badge';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import AttachMoney from '@material-ui/icons/AttachMoney'
+import Notifications from '@material-ui/icons/Notifications'
+import AccountCircle from '@material-ui/icons/AccountCircle'
+import ShoppingCart from '@material-ui/icons/ShoppingCart';
 import axios from 'axios';
 
 const host = process.env.API_HOST;
 const port = process.env.API_PORT;
 const uri = `http://${host}:${port}`;
 
-class App extends React.Component {
+const styles = {
+  root: {
+    flexGrow: 1,
+  },
+  spacer: {
+    flexGrow: 1,
+  },
+};
+
+class App extends Component {
   constructor () {
     super();
-
     this.state = {
       cart: [],
       display: false,
     };
+    this.toggleDisplay = this.toggleDisplay.bind(this);
+  }
 
-    this.toggleMenu = this.toggleMenu.bind(this);
-    this.setCurrentItem = this.setCurrentItem.bind(this);
+  componentDidMount () {
+    document.addEventListener('addToCart', ({ detail }) => {
+      axios.post(`${uri}/api/cart/items/`, detail)
+      .then(() => this.getCartItems())
+      .catch(console.error);
+    });
+    this.getCartItems();
   }
 
   getCartItems () {
@@ -25,69 +51,66 @@ class App extends React.Component {
     .catch(console.error);
   }
 
-  componentDidMount () {
-    // populate cart
-    document.addEventListener('addToCart', ({ detail }) => {
-      axios.post(`${uri}/api/cart/items/`, detail)
-      .then(() => this.getCartItems())
-      .catch(console.error);
-    });
-
-    this.getCartItems();
-  }
-
-  componentWillUnmount () {
-    document.removeEventListener('addToCart');
-  }
-
   setCurrentItem (id) {
     const detail = { detail: { id } };
     const event = new CustomEvent('setCurrentItem', detail);
     document.dispatchEvent(event);
   }
 
-  toggleMenu () {
+  toggleDisplay () {
     this.setState({ display: !this.state.display });
-    this.getCartItems();
   }
 
   render () {
-    let cartRender;
-
-    if (this.state.display === true) {
-      cartRender =
-      <Cart
+    const cartDisplay = this.state.display
+    ? <Cart
         cart={this.state.cart}
         display={this.state.display}
         setCurrentItem={this.setCurrentItem}
-        toggleMenu={this.toggleMenu}
-      />;
-    }
+        toggleDisplay={this.toggleDisplay}
+      />
+    : null;
 
     return (
-      <div className="header">
-        <nav>
-          <div className="container-shopping-cart">
-            <ul className="navbar-left">
-              <li className="li-right"><a className="link">Hi! Sign in or Register</a></li>
-              <li className="li-right"><a className="link">Daily Deals</a></li>
-              <li className="li-right"><a className="link">Gift Cards</a></li>
-              <li><a className="link">Help & Contact</a></li>
-            </ul>
-            <ul className="navbar-right">
-              <li className="li-right"><a className="link">Sell</a></li>
-              <li className="li-right"><a className="link">My eBay</a></li>
-              <li className="li-right"><a className="link">Notifications</a></li>
-              <li><a id="cart" className="link" onClick={this.toggleMenu} >Cart</a></li>
-            </ul>
-          </div>
-        </nav>
+      <div className={this.props.classes.root}>
+        <AppBar position="static">
+          <Toolbar>
 
-        {cartRender}
+            <Button color="inherit" size="large">
+              Login
+            </Button>
+            <Button color="inherit" size="large">
+              Deals
+            </Button>
+            <Button color="inherit" size="large">
+              Gift Cards
+            </Button>
+            <Button color="inherit" size="large">
+              Help
+            </Button>
 
+            <Typography className={this.props.classes.spacer}></Typography>
+
+            <IconButton color="inherit" aria-label="Sell">
+              <AttachMoney />
+            </IconButton>
+            <IconButton color="inherit" aria-label="Account">
+              <AccountCircle />
+            </IconButton>
+            <IconButton color="inherit" aria-label="Notifications">
+              <Notifications />
+            </IconButton>
+            <IconButton color="inherit" aria-label="Cart" onClick={this.toggleDisplay}>
+              <Badge badgeContent={this.state.cart.length} color="secondary">
+                <ShoppingCart />
+              </Badge>
+            </IconButton>
+          </Toolbar>
+        </AppBar>
+        {cartDisplay}
       </div>
     );
   }
-}
+};
 
-export default App;
+export default withStyles(styles)(App);
