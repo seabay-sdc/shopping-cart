@@ -1,5 +1,6 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import React, { Component } from 'react';
+import Cart from './Cart.jsx';
+import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Badge from '@material-ui/core/Badge';
@@ -15,61 +16,75 @@ const host = process.env.API_HOST;
 const port = process.env.API_PORT;
 const uri = `http://${host}:${port}`;
 
-const useStyles = makeStyles(theme => ({
+const styles = {
   root: {
     flexGrow: 1,
   },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
+  spacer: {
     flexGrow: 1,
   },
-}));
-
-
-const App = function () {
-  const classes = useStyles();
-  return (
-    <div className={classes.root}>
-      <AppBar position="static">
-        <Toolbar>
-
-          <Button color="inherit" size="large">
-            Login
-          </Button>
-          <Button color="inherit" size="large">
-            Deals
-          </Button>
-          <Button color="inherit" size="large">
-            Gift Cards
-          </Button>
-          <Button color="inherit" size="large">
-            Help
-          </Button>
-
-          <Typography className={classes.title}></Typography>
-
-          <IconButton color="inherit" aria-label="Sell">
-            <AttachMoney />
-          </IconButton>
-          <IconButton color="inherit" aria-label="Account">
-            <AccountCircle />
-          </IconButton>
-          <IconButton color="inherit" aria-label="Notifications">
-            <Badge badgeContent={2} color="secondary">
-              <Notifications />
-            </Badge>
-          </IconButton>
-          <IconButton color="inherit" aria-label="Cart">
-            <Badge badgeContent={8} color="secondary">
-              <ShoppingCart />
-            </Badge>
-          </IconButton>
-        </Toolbar>
-      </AppBar>
-    </div>
-  );
 };
 
-export default App;
+class App extends Component {
+  constructor () {
+    super();
+    this.state = {
+      display: false,
+    };
+    this.toggleDisplay = this.toggleDisplay.bind(this);
+  }
+
+  toggleDisplay () {
+    this.setState({ display: !this.state.display });
+  }
+
+  render () {
+    const cartDisplay = this.state.display
+    ? <Cart />
+    : null;
+
+    return (
+      <div className={this.props.classes.root}>
+        <AppBar position="static">
+          <Toolbar>
+
+            <Button color="inherit" size="large">
+              Login
+            </Button>
+            <Button color="inherit" size="large">
+              Deals
+            </Button>
+            <Button color="inherit" size="large">
+              Gift Cards
+            </Button>
+            <Button color="inherit" size="large">
+              Help
+            </Button>
+
+            <Typography className={this.props.classes.spacer}></Typography>
+
+            <IconButton color="inherit" aria-label="Sell">
+              <AttachMoney />
+            </IconButton>
+            <IconButton color="inherit" aria-label="Account">
+              <AccountCircle />
+            </IconButton>
+            <IconButton color="inherit" aria-label="Notifications">
+              <Badge badgeContent={2} color="secondary">
+                <Notifications />
+              </Badge>
+            </IconButton>
+            <IconButton color="inherit" aria-label="Cart" onClick={this.toggleDisplay}>
+              <Badge badgeContent={8} color="secondary">
+                <ShoppingCart />
+              </Badge>
+            </IconButton>
+          </Toolbar>
+        </AppBar>
+        {cartDisplay}
+      </div>
+    );
+  }
+};
+
+export default withStyles(styles)(App);
