@@ -26,8 +26,9 @@ const styles = {
   spacer: {
     flexGrow: 1,
   },
-  menuIcon : {
-
+  menuButton : {
+    marginLeft : -10,
+    marginRight : -10,
   },
   
 };
@@ -68,6 +69,7 @@ class App extends Component {
   }
 
   render () {
+    const {classes} = this.props;
     const cartDisplay = this.state.display
     ? <Cart
         cart={this.state.cart}
@@ -90,16 +92,16 @@ class App extends Component {
 
           <MediaQuery query='(min-width: 601px)'>
 
-            <Button color="inherit" size="large">
+            <Button className={classes.menuButton} color="inherit" size="large">
               Login
             </Button>
-            <Button color="inherit" size="large">
+            <Button className={classes.menuButton} color="inherit" size="large">
               Deals
             </Button>
-            <Button color="inherit" size="large">
+            <Button className={classes.menuButton} color="inherit" size="large">
               Gift Cards
             </Button>
-            <Button color="inherit" size="large">
+            <Button className={classes.menuButton} color="inherit" size="large">
               Help
             </Button>
 
