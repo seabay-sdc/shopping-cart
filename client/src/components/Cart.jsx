@@ -45,6 +45,7 @@ class Cart extends Component {
         <DialogContent>
           <Products
             cart={this.props.cart}
+            format={this.format}
             toggleDisplay={this.props.toggleDisplay}
             setCurrentItem={this.props.setCurrentItem}
           />

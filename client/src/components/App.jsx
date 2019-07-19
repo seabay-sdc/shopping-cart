@@ -37,6 +37,11 @@ class App extends Component {
   }
 
   componentDidMount () {
+    document.addEventListener('addToCart', ({ detail }) => {
+      axios.post(`${uri}/api/cart/items/`, detail)
+      .then(() => this.getCartItems())
+      .catch(console.error);
+    });
     this.getCartItems();
   }
 
@@ -46,8 +51,10 @@ class App extends Component {
     .catch(console.error);
   }
 
-  setCurrentItem () {
-    return;
+  setCurrentItem (id) {
+    const detail = { detail: { id } };
+    const event = new CustomEvent('setCurrentItem', detail);
+    document.dispatchEvent(event);
   }
 
   toggleDisplay () {
@@ -91,12 +98,10 @@ class App extends Component {
               <AccountCircle />
             </IconButton>
             <IconButton color="inherit" aria-label="Notifications">
-              <Badge badgeContent={2} color="secondary">
-                <Notifications />
-              </Badge>
+              <Notifications />
             </IconButton>
             <IconButton color="inherit" aria-label="Cart" onClick={this.toggleDisplay}>
-              <Badge badgeContent={8} color="secondary">
+              <Badge badgeContent={this.state.cart.length} color="secondary">
                 <ShoppingCart />
               </Badge>
             </IconButton>
