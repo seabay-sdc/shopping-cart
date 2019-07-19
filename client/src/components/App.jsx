@@ -30,10 +30,10 @@ const styles = {
     marginLeft : -10,
     marginRight : -10,
   },
-  
+
 };
 
-class App extends Component {
+class NavBar extends Component {
   constructor () {
     super();
     this.state = {
@@ -132,4 +132,4 @@ class App extends Component {
   }
 };
 
-export default withStyles(styles)(App);
+export default withStyles(styles)(NavBar);
