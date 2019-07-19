@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
 :root {
   --main-color: #333333;
   --hover-color: #0654ba;
@@ -57,6 +59,10 @@ nav ul li a {
   display: grid;
   font-size: 18px;
   grid-template-columns: 15% 65% auto;
+}
+
+.container-shopping-cart {
+  font-family: Roboto, sans-serif;
 }
 
 .shopping-cart-total {
