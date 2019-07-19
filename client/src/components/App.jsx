@@ -11,7 +11,9 @@ import AttachMoney from '@material-ui/icons/AttachMoney'
 import Notifications from '@material-ui/icons/Notifications'
 import AccountCircle from '@material-ui/icons/AccountCircle'
 import ShoppingCart from '@material-ui/icons/ShoppingCart';
+import MenuIcon from '@material-ui/icons/Menu';
 import axios from 'axios';
+import MediaQuery from 'react-responsive';
 
 const host = process.env.API_HOST;
 const port = process.env.API_PORT;
@@ -24,6 +26,10 @@ const styles = {
   spacer: {
     flexGrow: 1,
   },
+  menuIcon : {
+
+  },
+  
 };
 
 class App extends Component {
@@ -76,6 +82,14 @@ class App extends Component {
         <AppBar position="static">
           <Toolbar>
 
+          <MediaQuery query='(max-width: 600px)'>
+            <IconButton edge="start" color="inherit" aria-label="Menu">
+              <MenuIcon />
+            </IconButton>
+          </MediaQuery>
+
+          <MediaQuery query='(min-width: 601px)'>
+
             <Button color="inherit" size="large">
               Login
             </Button>
@@ -89,7 +103,10 @@ class App extends Component {
               Help
             </Button>
 
+          </MediaQuery>
             <Typography className={this.props.classes.spacer}></Typography>
+
+
 
             <IconButton color="inherit" aria-label="Sell">
               <AttachMoney />
