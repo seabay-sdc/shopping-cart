@@ -11,7 +11,9 @@ import AttachMoney from '@material-ui/icons/AttachMoney'
 import Notifications from '@material-ui/icons/Notifications'
 import AccountCircle from '@material-ui/icons/AccountCircle'
 import ShoppingCart from '@material-ui/icons/ShoppingCart';
+import MenuIcon from '@material-ui/icons/Menu';
 import axios from 'axios';
+import MediaQuery from 'react-responsive';
 
 const host = process.env.API_HOST;
 const port = process.env.API_PORT;
@@ -24,6 +26,11 @@ const styles = {
   spacer: {
     flexGrow: 1,
   },
+  menuButton : {
+    marginLeft : -10,
+    marginRight : -10,
+  },
+  
 };
 
 class App extends Component {
@@ -62,6 +69,7 @@ class App extends Component {
   }
 
   render () {
+    const {classes} = this.props;
     const cartDisplay = this.state.display
     ? <Cart
         cart={this.state.cart}
@@ -76,20 +84,31 @@ class App extends Component {
         <AppBar position="static">
           <Toolbar>
 
-            <Button color="inherit" size="large">
+          <MediaQuery query='(max-width: 600px)'>
+            <IconButton edge="start" color="inherit" aria-label="Menu">
+              <MenuIcon />
+            </IconButton>
+          </MediaQuery>
+
+          <MediaQuery query='(min-width: 601px)'>
+
+            <Button className={classes.menuButton} color="inherit" size="large">
               Login
             </Button>
-            <Button color="inherit" size="large">
+            <Button className={classes.menuButton} color="inherit" size="large">
               Deals
             </Button>
-            <Button color="inherit" size="large">
+            <Button className={classes.menuButton} color="inherit" size="large">
               Gift Cards
             </Button>
-            <Button color="inherit" size="large">
+            <Button className={classes.menuButton} color="inherit" size="large">
               Help
             </Button>
 
+          </MediaQuery>
             <Typography className={this.props.classes.spacer}></Typography>
+
+
 
             <IconButton color="inherit" aria-label="Sell">
               <AttachMoney />
