@@ -32,6 +32,7 @@ class Cart extends Component {
   render () {
     return (
       <Dialog
+        className="shopping-cart"
         open={this.props.display}
         fullWidth={true}
         maxWidth="sm"
@@ -48,7 +49,7 @@ class Cart extends Component {
             setCurrentItem={this.props.setCurrentItem}
           />
           <div className="shopping-cart-total">
-            Subtotal: {this.formatTotal}
+            Subtotal: {this.formatTotal()}
           </div>
         </DialogContent>
         <DialogActions>

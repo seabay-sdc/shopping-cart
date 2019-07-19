@@ -36,6 +36,16 @@ class App extends Component {
     this.toggleDisplay = this.toggleDisplay.bind(this);
   }
 
+  componentDidMount () {
+    this.getCartItems();
+  }
+
+  getCartItems () {
+    axios.get(`${uri}/api/cart/items`)
+    .then(({ data }) => this.setState({ cart: data }))
+    .catch(console.error);
+  }
+
   setCurrentItem () {
     return;
   }
