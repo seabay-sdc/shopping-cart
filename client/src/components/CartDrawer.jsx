@@ -35,8 +35,14 @@ const useStyles = makeStyles(() => createStyles({
   },
 }));
 
-const CartDrawer = ({ cart, display, toggleDisplay }) => {
+const CartDrawer = ({ cart, display, setCurrentItem, toggleDisplay }) => {
   const classes = useStyles();
+
+  const onClick = (e) => {
+    setCurrentItem(e.currentTarget.children[1].id);
+    toggleDisplay();
+  };
+
   const format = (number) => {
     const formatter = new Intl.NumberFormat('en-US', {
       style: 'currency',
@@ -56,17 +62,16 @@ const CartDrawer = ({ cart, display, toggleDisplay }) => {
     <Drawer anchor="bottom" onClose={toggleDisplay} open={display}>
       <div
         role="presentation"
-        // onClick={toggleDisplay}
       >
         <List component="nav">
           {cart.map((product, index) => {
             return (
-              <ListItem button key={index}>
+              <ListItem button key={index} onClick={onClick}>
                 <ListItemIcon>
-                  <img className={classes.picture} src={product.img1_url} />
+                  <img id={product.id} className={classes.picture} src={product.img1_url} />
                 </ListItemIcon>
-                <ListItemText className={classes.name} primary={product.name}/>
-                <ListItemText className={classes.price} primary={format(product.price)}/>
+                <ListItemText id={product.id} className={classes.name} primary={product.name}/>
+                <ListItemText className={classes.price} primary={format(product.price * product.quantity)}/>
               </ListItem>
             );
           })}
