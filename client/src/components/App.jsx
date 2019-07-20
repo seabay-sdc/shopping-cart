@@ -17,6 +17,7 @@ import axios from 'axios';
 import MediaQuery from 'react-responsive';
 import { createMuiTheme, MuiThemeProvider} from "@material-ui/core";
 import { StylesProvider, createGenerateClassName } from '@material-ui/styles';
+import Drawer from '@material-ui/core/Drawer';
 
 const host = process.env.API_HOST;
 const port = process.env.API_PORT;
