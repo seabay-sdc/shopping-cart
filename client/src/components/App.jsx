@@ -15,6 +15,8 @@ import ShoppingCart from '@material-ui/icons/ShoppingCart';
 import MenuIcon from '@material-ui/icons/Menu';
 import axios from 'axios';
 import MediaQuery from 'react-responsive';
+import { createMuiTheme, MuiThemeProvider} from "@material-ui/core";
+import { StylesProvider, createGenerateClassName } from '@material-ui/styles';
 
 const host = process.env.API_HOST;
 const port = process.env.API_PORT;
@@ -33,6 +35,23 @@ const styles = {
   },
 
 };
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#0065D2"
+    },
+    //left secondary color unstyled so notification would stay red
+    // secondary: {
+    //   main: "#009AF7"
+    // }
+  }
+});
+
+const generateClassName = createGenerateClassName({
+  productionPrefix: 'c',
+  seed: 'ross'
+});
 
 class NavBar extends Component {
   constructor () {
@@ -98,52 +117,56 @@ class NavBar extends Component {
     : null;
 
     return (
-      <div className={this.props.classes.root}>
-        <AppBar position="static">
-          <Toolbar>
+      <StylesProvider generateClassName={generateClassName}>
+        <MuiThemeProvider theme={theme}>
+          <div className={this.props.classes.root}>
+            <AppBar position="static">
+              <Toolbar>
 
-          <MediaQuery query='(max-width: 600px)'>
-            <IconButton edge="start" color="inherit" aria-label="Menu">
-              <MenuIcon />
-            </IconButton>
-          </MediaQuery>
+              <MediaQuery query='(max-width: 600px)'>
+                <IconButton edge="start" color="inherit" aria-label="Menu">
+                  <MenuIcon />
+                </IconButton>
+              </MediaQuery>
 
-          <MediaQuery query='(min-width: 601px)'>
-            <Button className={classes.menuButton} color="inherit" size="large">
-              Login
-            </Button>
-            <Button className={classes.menuButton} color="inherit" size="large">
-              Deals
-            </Button>
-            <Button className={classes.menuButton} color="inherit" size="large">
-              Gift Cards
-            </Button>
-            <Button className={classes.menuButton} color="inherit" size="large">
-              Help
-            </Button>
-          </MediaQuery>
-            <Typography className={this.props.classes.spacer}></Typography>
+              <MediaQuery query='(min-width: 601px)'>
+                <Button className={classes.menuButton} color="inherit" size="large">
+                  Login
+                </Button>
+                <Button className={classes.menuButton} color="inherit" size="large">
+                  Deals
+                </Button>
+                <Button className={classes.menuButton} color="inherit" size="large">
+                  Gift Cards
+                </Button>
+                <Button className={classes.menuButton} color="inherit" size="large">
+                  Help
+                </Button>
+              </MediaQuery>
+                <Typography className={this.props.classes.spacer}></Typography>
 
 
 
-            <IconButton color="inherit" aria-label="Sell">
-              <AttachMoney />
-            </IconButton>
-            <IconButton color="inherit" aria-label="Account">
-              <AccountCircle />
-            </IconButton>
-            <IconButton color="inherit" aria-label="Notifications">
-              <Notifications />
-            </IconButton>
-            <IconButton color="inherit" aria-label="Cart" onClick={this.toggleDisplay}>
-              <Badge badgeContent={this.state.cart.length} color="secondary">
-                <ShoppingCart />
-              </Badge>
-            </IconButton>
-          </Toolbar>
-        </AppBar>
-        {cartDisplay}
-      </div>
+                <IconButton color="inherit" aria-label="Sell">
+                  <AttachMoney />
+                </IconButton>
+                <IconButton color="inherit" aria-label="Account">
+                  <AccountCircle />
+                </IconButton>
+                <IconButton color="inherit" aria-label="Notifications">
+                  <Notifications />
+                </IconButton>
+                <IconButton color="inherit" aria-label="Cart" onClick={this.toggleDisplay}>
+                  <Badge badgeContent={this.state.cart.length} color="secondary">
+                    <ShoppingCart />
+                  </Badge>
+                </IconButton>
+              </Toolbar>
+            </AppBar>
+            {cartDisplay}
+          </div>
+        </MuiThemeProvider>
+      </StylesProvider>
     );
   }
 };
