@@ -35,7 +35,7 @@ const useStyles = makeStyles(() => createStyles({
   },
 }));
 
-const CartDrawer = ({ cart, open, toggleDisplay }) => {
+const CartDrawer = ({ cart, display, toggleDisplay }) => {
   const classes = useStyles();
   const format = (number) => {
     const formatter = new Intl.NumberFormat('en-US', {
@@ -53,7 +53,7 @@ const CartDrawer = ({ cart, open, toggleDisplay }) => {
     return formattedTotal;
   }
   return (
-    <Drawer anchor="bottom" onClose={toggleDisplay} open={open}>
+    <Drawer anchor="bottom" onClose={toggleDisplay} open={display}>
       <div
         role="presentation"
         // onClick={toggleDisplay}

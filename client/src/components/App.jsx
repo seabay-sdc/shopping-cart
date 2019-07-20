@@ -71,24 +71,31 @@ class NavBar extends Component {
 
   render () {
     const {classes} = this.props;
-    // const cartDisplay = this.state.display
-    // ? <Cart
-    //     cart={this.state.cart}
-    //     display={this.state.display}
-    //     setCurrentItem={this.setCurrentItem}
-    //     toggleDisplay={this.toggleDisplay}
-    //   />
-    // : null;
+
+    const responsiveCart = (
+      <>
+        <MediaQuery query='(max-width: 600px)'>
+          <CartDrawer
+            cart={this.state.cart}
+            display={this.state.display}
+            setCurrentItem={this.setCurrentItem}
+            toggleDisplay={this.toggleDisplay}
+          />
+        </MediaQuery>
+        <MediaQuery query='(min-width: 601px)'>
+          <Cart
+          cart={this.state.cart}
+          display={this.state.display}
+          setCurrentItem={this.setCurrentItem}
+          toggleDisplay={this.toggleDisplay}
+          />
+        </MediaQuery>
+      </>
+    );
 
     const cartDisplay = this.state.display
-    ? <CartDrawer
-        cart={this.state.cart}
-        open={this.state.display}
-        toggleDisplay={this.toggleDisplay}
-      />
+    ? responsiveCart
     : null;
-
-
 
     return (
       <div className={this.props.classes.root}>
@@ -102,7 +109,6 @@ class NavBar extends Component {
           </MediaQuery>
 
           <MediaQuery query='(min-width: 601px)'>
-
             <Button className={classes.menuButton} color="inherit" size="large">
               Login
             </Button>
@@ -115,7 +121,6 @@ class NavBar extends Component {
             <Button className={classes.menuButton} color="inherit" size="large">
               Help
             </Button>
-
           </MediaQuery>
             <Typography className={this.props.classes.spacer}></Typography>
 

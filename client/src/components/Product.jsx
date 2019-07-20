@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Product = ({ format, product, toggleMenu, setCurrentItem }) => {
+const Product = ({ format, product, toggleDisplay, setCurrentItem }) => {
   const onClick = (e) => {
     setCurrentItem(e.target.id);
-    toggleMenu();
+    toggleDisplay();
   };
   const price = format(product.price * product.quantity);
   return (
