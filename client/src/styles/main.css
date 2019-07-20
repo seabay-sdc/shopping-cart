@@ -10,6 +10,12 @@ body {
   --light-text: rgb(141, 145, 156);
 }
 
+.link {
+  color: #333333;
+  cursor: pointer;
+  text-decoration: none;
+}
+
 .li-right {
   border-right: 1px #c7c7c7 solid;
 }

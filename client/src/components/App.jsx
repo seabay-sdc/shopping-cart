@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Cart from './Cart.jsx';
+import CartDrawer from './CartDrawer.jsx';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -70,13 +71,30 @@ class NavBar extends Component {
 
   render () {
     const {classes} = this.props;
+
+    const responsiveCart = (
+      <>
+        <MediaQuery query='(max-width: 600px)'>
+          <CartDrawer
+            cart={this.state.cart}
+            display={this.state.display}
+            setCurrentItem={this.setCurrentItem}
+            toggleDisplay={this.toggleDisplay}
+          />
+        </MediaQuery>
+        <MediaQuery query='(min-width: 601px)'>
+          <Cart
+          cart={this.state.cart}
+          display={this.state.display}
+          setCurrentItem={this.setCurrentItem}
+          toggleDisplay={this.toggleDisplay}
+          />
+        </MediaQuery>
+      </>
+    );
+
     const cartDisplay = this.state.display
-    ? <Cart
-        cart={this.state.cart}
-        display={this.state.display}
-        setCurrentItem={this.setCurrentItem}
-        toggleDisplay={this.toggleDisplay}
-      />
+    ? responsiveCart
     : null;
 
     return (
@@ -91,7 +109,6 @@ class NavBar extends Component {
           </MediaQuery>
 
           <MediaQuery query='(min-width: 601px)'>
-
             <Button className={classes.menuButton} color="inherit" size="large">
               Login
             </Button>
@@ -104,7 +121,6 @@ class NavBar extends Component {
             <Button className={classes.menuButton} color="inherit" size="large">
               Help
             </Button>
-
           </MediaQuery>
             <Typography className={this.props.classes.spacer}></Typography>
 
