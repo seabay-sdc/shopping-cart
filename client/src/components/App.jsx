@@ -15,8 +15,17 @@ import ShoppingCart from '@material-ui/icons/ShoppingCart';
 import MenuIcon from '@material-ui/icons/Menu';
 import axios from 'axios';
 import MediaQuery from 'react-responsive';
-import { createMuiTheme, MuiThemeProvider} from "@material-ui/core";
+import { createMuiTheme, MuiThemeProvider, Divider, List, ListItem} from "@material-ui/core";
 import { StylesProvider, createGenerateClassName } from '@material-ui/styles';
+import Drawer from '@material-ui/core/Drawer';
+import ListSubheader from '@material-ui/core/ListSubheader';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import CardGiftcardIcon from '@material-ui/icons/CardGiftcard';
+import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
+import InputIcon from '@material-ui/icons/Input';
+import HelpIcon from '@material-ui/icons/Help';
+
 
 const host = process.env.API_HOST;
 const port = process.env.API_PORT;
@@ -59,8 +68,10 @@ class NavBar extends Component {
     this.state = {
       cart: [],
       display: false,
+      drawerOpen: false
     };
     this.toggleDisplay = this.toggleDisplay.bind(this);
+    this.handleMenuToggle = this.handleMenuToggle.bind(this);
   }
 
   componentDidMount () {
@@ -86,6 +97,10 @@ class NavBar extends Component {
 
   toggleDisplay () {
     this.setState({ display: !this.state.display });
+  }
+
+  handleMenuToggle() {
+    this.setState({drawerOpen : !(this.state.drawerOpen)})
   }
 
   render () {
@@ -124,8 +139,12 @@ class NavBar extends Component {
               <Toolbar>
 
               <MediaQuery query='(max-width: 600px)'>
-                <IconButton edge="start" color="inherit" aria-label="Menu">
-                  <MenuIcon />
+                <IconButton 
+                  edge="start" 
+                  color="inherit" 
+                  aria-label="Menu" 
+                  onClick={this.handleMenuToggle}>
+                  <MenuIcon/>
                 </IconButton>
               </MediaQuery>
 
@@ -163,6 +182,65 @@ class NavBar extends Component {
                 </IconButton>
               </Toolbar>
             </AppBar>
+
+            <Drawer
+              docked={false}
+              open={this.state.drawerOpen}>
+              {/* <IconButton 
+                edge="start" 
+                color="inherit" 
+                aria-label="Menu" 
+                onClick={this.handleMenuToggle}
+                align="right">
+                <MenuIcon/>
+              </IconButton>
+              Hello asdfasdfa sdfas dfasdf asdf asd fasdf asdf */}
+             <AppBar position="static" style={{width : 200}}>
+              <Toolbar>
+                <IconButton 
+                  edge="start" 
+                  color="inherit" 
+                  aria-label="Menu" 
+                  onClick={this.handleMenuToggle}>
+                  <MenuIcon/>
+                </IconButton>
+              </Toolbar>
+            </AppBar>
+             {/* <Divider/> */}
+             <List>
+               <ListItem button>
+                  <ListItemIcon>
+                    <InputIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Login" />
+               </ListItem>
+               <ListItem button>
+
+                 <ListItemIcon>
+                   <AttachMoneyIcon />
+                 </ListItemIcon>
+                  <ListItemText primary="Deals" />
+               </ListItem>
+               <ListItem button>
+
+                 <ListItemIcon>
+                   <CardGiftcardIcon />
+                 </ListItemIcon>
+                <ListItemText primary="Gift Cards" />
+               </ListItem>
+               <ListItem button>
+                 <ListItemIcon>
+                   <HelpIcon />
+                 </ListItemIcon>
+                  <ListItemText primary="Help" />
+               </ListItem>
+
+             </List>
+            </Drawer>
+
+
+
+
             {cartDisplay}
           </div>
         </MuiThemeProvider>
