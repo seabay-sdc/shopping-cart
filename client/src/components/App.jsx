@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Cart from './Cart.jsx';
+import CartDrawer from './CartDrawer.jsx';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -70,14 +71,24 @@ class NavBar extends Component {
 
   render () {
     const {classes} = this.props;
+    // const cartDisplay = this.state.display
+    // ? <Cart
+    //     cart={this.state.cart}
+    //     display={this.state.display}
+    //     setCurrentItem={this.setCurrentItem}
+    //     toggleDisplay={this.toggleDisplay}
+    //   />
+    // : null;
+
     const cartDisplay = this.state.display
-    ? <Cart
+    ? <CartDrawer
         cart={this.state.cart}
-        display={this.state.display}
-        setCurrentItem={this.setCurrentItem}
+        open={this.state.display}
         toggleDisplay={this.toggleDisplay}
       />
     : null;
+
+
 
     return (
       <div className={this.props.classes.root}>
