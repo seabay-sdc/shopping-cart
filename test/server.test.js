@@ -102,7 +102,8 @@ describe('server routes', () => {
       agent = request
         .agent(app)
         .post(`/api/cart/items`)
-        .send({ id: 123, quantity: 4 });
+        .send({ id: 123, quantity: 4 })
+        .set('Accept', 'application/json');
     });
 
     it('should respond with status code 201', () => {
