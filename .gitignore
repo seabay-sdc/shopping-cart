@@ -65,3 +65,9 @@ typings/
 
 # webpack
 bundle.js
+
+# prettier
+.prettierrc
+
+# csv
+*.csv
