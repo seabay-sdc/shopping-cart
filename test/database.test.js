@@ -6,21 +6,21 @@ let mongoServer;
 let db;
 let models;
 
-before((done) => {
+before(done => {
   mongoServer = new MongoMemoryServer();
   mongoServer
     .getConnectionString()
-    .then((mongoUri) => {
+    .then(mongoUri => {
       process.env.DB_URI = mongoUri;
       mongoose.connect(mongoUri, { useNewUrlParser: true });
     })
-    .then(() => db = require('../server/database'))
-    .then(() => models = require('../server/database/models'))
+    .then(() => (db = require('../server/database')))
+    .then(() => (models = require('../server/database/models')))
     .then(() => done())
-    .catch((err) => done(err));
+    .catch(err => done(err));
 });
 
-after((done) => {
+after(done => {
   mongoose.disconnect();
   mongoServer.stop();
   done();
@@ -29,10 +29,10 @@ after((done) => {
 describe('Database helper functions', () => {
   const data = require('./data/databaseData');
   describe('Cart.get()', () => {
-    before((done) => {
+    before(done => {
       models.CartItems.insertMany(data)
-      .then(() => done())
-      .catch((err) => console.error(err));
+        .then(() => done())
+        .catch(err => console.error(err));
     });
 
     it('should return a promise', () => {
