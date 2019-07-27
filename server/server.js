@@ -36,10 +36,7 @@ app.post('/api/cart/items/', (req, res) => {
   db.cart
     .add({ id: req.body.id, quantity: req.body.quantity })
     .then(() => res.status(201).send())
-    .catch(err => {
-      console.log(err);
-      res.status(400).send();
-    });
+    .catch(err => res.status(400).send());
 });
 
 // http delete /api/cart/items/{id} --> delete single item from cart
