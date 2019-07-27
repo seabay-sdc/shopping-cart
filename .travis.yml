@@ -9,9 +9,9 @@ services:
   - postgresql
 
 before_script:
-  - psql -c 'create database travis' -U postgres
-  - psql -d travis -c 'CREATE TABLE productsTEST (id SERIAL PRIMARY KEY, prodid VARCHAR(45), name VARCHAR(45), price DECIMAL(7,2), category VARCHAR(45), img1_url VARCHAR(45));'
-  - psql -d travis -c 'CREATE TABLE cartItems (id SERIAL PRIMARY KEY, prodid VARCHAR(45), name VARCHAR(45), price DECIMAL(7,2), category VARCHAR(45), img1_url VARCHAR(45), quantity INT);'
+  - psql -c 'create database productsTEST' -U postgres
+  - psql -d productsTEST -c 'CREATE TABLE productsTEST (id SERIAL PRIMARY KEY, prodid VARCHAR(45), name VARCHAR(45), price DECIMAL(7,2), category VARCHAR(45), img1_url VARCHAR(45));'
+  - psql -d productsTEST -c 'CREATE TABLE cartItems (id SERIAL PRIMARY KEY, prodid VARCHAR(45), name VARCHAR(45), price DECIMAL(7,2), category VARCHAR(45), img1_url VARCHAR(45), quantity INT);'
 
 script:
   - ./test/data/db-init.sh
