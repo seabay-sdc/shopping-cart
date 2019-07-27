@@ -1,3 +1,4 @@
+require('dotenv').config();
 const db = require('../server/database/postgres');
 const { expect } = require('chai');
 

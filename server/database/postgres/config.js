@@ -1,11 +1,10 @@
 const { Client } = require('pg');
-const connectionString = 'postgres://localhost:5432/productsTEST';
+const connectionString =
+  process.env.NODE_ENV === 'PROD'
+    ? process.env.PG_PROD_URI
+    : process.env.PG_TEST_URI;
 const client = new Client(connectionString);
+console.log(connectionString);
 
 client.connect();
-// (async () => {
-//   const query = await client.query('SELECT * FROM productsTEST');
-//   console.log(query.rows[0]);
-//   client.end();
-// })();
 module.exports = client;
