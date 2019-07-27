@@ -19,3 +19,8 @@ script:
 
 notifications:
   - email: false
+
+env:
+  - DB_PATH=./database/postgres
+  - PG_TEST_URI=postgres://localhost:5432/productstest
+  - NODE_ENV=TEST
