@@ -15,7 +15,7 @@ const CartItemSchema = new Schema({
   price: Number,
   category: String,
   img1_url: String,
-  quantity: Number,
+  quantity: Number
 });
 
 const CartItems = connection.model('cart_item', CartItemSchema);

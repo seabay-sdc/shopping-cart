@@ -14,8 +14,8 @@ before(done => {
       process.env.DB_URI = mongoUri;
       mongoose.connect(mongoUri, { useNewUrlParser: true });
     })
-    .then(() => (db = require('../server/database')))
-    .then(() => (models = require('../server/database/models')))
+    .then(() => (db = require('../server/database/mongo')))
+    .then(() => (models = require('../server/database/mongo/models')))
     .then(() => done())
     .catch(err => done(err));
 });
