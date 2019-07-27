@@ -14,7 +14,7 @@ describe('Postgres Cart Methods', () => {
       expect(cartItems).to.be.an.instanceOf(Array);
     });
     it('returns all cart items when query is blank', () => {
-      expect(cartItems).to.have.length(2);
+      expect(cartItems).to.have.length.greaterThan(1);
     });
     it('returns specific item if query is not blank', async () => {
       let singleItem = await db.cart.get({ id: 'gha583kax' });
@@ -97,9 +97,6 @@ describe('Postgres Cart Methods', () => {
 });
 
 describe('Postgres Product Methods', () => {
-  after(async () => {
-    await db.cart.end();
-  });
   describe('products.get()', () => {
     let product;
 
@@ -128,4 +125,8 @@ describe('Postgres Product Methods', () => {
       expect(typeof product[0]['img1_url']).to.equal('string');
     });
   });
+});
+
+after(async () => {
+  await db.cart.end();
 });

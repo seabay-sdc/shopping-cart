@@ -4,7 +4,6 @@ const connectionString =
     ? process.env.PG_PROD_URI
     : process.env.PG_TEST_URI;
 const client = new Client(connectionString);
-console.log(connectionString);
 
 client.connect();
 module.exports = client;
