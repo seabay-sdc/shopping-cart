@@ -2,9 +2,6 @@ const db = require('../server/database/postgres');
 const { expect } = require('chai');
 
 describe('Postgres Cart Methods', () => {
-  after(async () => {
-    await db.cart.end();
-  });
   describe('cart.get()', () => {
     let cartItems;
 
@@ -98,4 +95,36 @@ describe('Postgres Cart Methods', () => {
   });
 });
 
-// describe('PRODUCT METHODS', () => {});
+describe('Postgres Product Methods', () => {
+  after(async () => {
+    await db.cart.end();
+  });
+  describe('products.get()', () => {
+    let product;
+
+    before(async () => {
+      product = await db.products.get({ id: 'abc123xyz' });
+    });
+
+    it('returns an array of a single product', () => {
+      expect(product).to.be.an.instanceOf(Array);
+      expect(product).to.have.length(1);
+    });
+    it('has the expected properties', () => {
+      expect(product[0]).to.haveOwnProperty('id');
+      expect(product[0]).to.haveOwnProperty('prodid');
+      expect(product[0]).to.haveOwnProperty('name');
+      expect(product[0]).to.haveOwnProperty('price');
+      expect(product[0]).to.haveOwnProperty('category');
+      expect(product[0]).to.haveOwnProperty('img1_url');
+    });
+    it('returns data in the appropriate shape', () => {
+      expect(typeof product[0]['id']).to.equal('number');
+      expect(typeof product[0]['prodid']).to.equal('string');
+      expect(typeof product[0]['name']).to.equal('string');
+      expect(typeof product[0]['price']).to.equal('string');
+      expect(typeof product[0]['category']).to.equal('string');
+      expect(typeof product[0]['img1_url']).to.equal('string');
+    });
+  });
+});

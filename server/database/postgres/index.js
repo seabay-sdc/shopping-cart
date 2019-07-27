@@ -16,11 +16,8 @@ const cart = {
   },
 
   add: async item => {
-    let productQuery = await client.query(
-      'SELECT * FROM productsTEST WHERE prodid = $1',
-      [item.id]
-    );
-    const product = productQuery.rows[0];
+    let productQuery = await products.get({ id: item.id });
+    const product = productQuery[0];
     const cartQuery = await cart.get({ id: product.prodid });
     const cartItem = { ...product, quantity: item.quantity };
 
@@ -53,15 +50,14 @@ const cart = {
 
 // product methods
 const products = {
-  get: (item = {}) => {
-    return Products.find(item).exec();
-  },
-  add: async (items = []) => {
-    try {
-      await Products.collection.insertMany(items);
-    } catch (err) {
-      console.log(err);
-    }
+  get: async (item = {}) => {
+    const query = await client.query(
+      'SELECT * FROM productsTEST WHERE prodid = $1',
+      [item.id]
+    );
+    return new Promise((resolve, reject) => {
+      resolve(query.rows);
+    });
   }
 };
 
