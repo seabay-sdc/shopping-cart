@@ -1,12 +1,10 @@
-const { expect } = require('chai');
-const rewire = require('rewire');
+require('dotenv').config();
+const db = require('../server/database/postgres');
 const request = require('supertest');
-const app = rewire('../server/server');
-const dbMock = require('./mocks/serverMocks');
+const app = require('../server/server');
+const { expect } = require('chai');
 
-app.__set__('db', dbMock);
-
-describe('server routes', () => {
+describe('postgres integration tests', () => {
   describe('GET /api/products', () => {
     let agent;
     beforeEach(() => {
@@ -46,7 +44,7 @@ describe('server routes', () => {
 
   describe('GET /api/products/:id', () => {
     let agent;
-    const prodID = 13;
+    const prodID = 'abc123xyz';
     beforeEach(() => {
       agent = request.agent(app).get(`/api/products/${prodID}`);
     });
@@ -76,11 +74,12 @@ describe('server routes', () => {
         if (err) {
           console.log(err);
         } else {
-          expect(res.body).to.have.own.property('id');
-          expect(res.body).to.have.own.property('name');
-          expect(res.body).to.have.own.property('price');
-          expect(res.body).to.have.own.property('category');
-          expect(res.body).to.have.own.property('img1_url');
+          const product = res.body[0];
+          expect(product).to.have.own.property('id');
+          expect(product).to.have.own.property('name');
+          expect(product).to.have.own.property('price');
+          expect(product).to.have.own.property('category');
+          expect(product).to.have.own.property('img1_url');
         }
       });
     });
@@ -98,12 +97,17 @@ describe('server routes', () => {
 
   describe('POST /api/cart/items', () => {
     let agent;
-    beforeEach(() => {
+    before(() => {
       agent = request
         .agent(app)
         .post(`/api/cart/items`)
-        .send({ id: 123, quantity: 4 })
+        .send({ id: 'qox839utj', quantity: 4 })
         .set('Accept', 'application/json');
+    });
+
+    after(async () => {
+      await request.agent(app).delete('/api/cart/items/qox839utj');
+      const cart = await request.agent(app).get('/api/cart/items');
     });
 
     it('should respond with status code 201', () => {

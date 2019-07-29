@@ -1,0 +1,24 @@
+language: node_js
+
+node_js:
+  - 'stable'
+
+sudo: true
+
+services:
+  - postgresql
+
+before_script:
+  - psql -c 'create database productstest;'
+  - psql -d productstest -c 'CREATE TABLE productsTEST (id SERIAL PRIMARY KEY, prodid VARCHAR(45), name VARCHAR(45), price DECIMAL(7,2), category VARCHAR(45), img1_url VARCHAR(45));'
+  - psql -d productstest -c 'CREATE TABLE cartItems (id SERIAL PRIMARY KEY, prodid VARCHAR(45), name VARCHAR(45), price DECIMAL(7,2), category VARCHAR(45), img1_url VARCHAR(45), quantity INT);'
+
+script:
+  - ./test/data/db-init.sh
+  - npm run test
+
+notifications:
+  - email: false
+
+env:
+  - DB_PATH=./database/postgres PG_TEST_URI=postgres://localhost:5432/productstest NODE_ENV=TEST

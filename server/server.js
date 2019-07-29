@@ -3,7 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const compression = require('compression');
-const db = require('./database/mongo');
+const db = require(process.env.DB_PATH);
 // const db = require('./database/postgres');
 const app = express();
 // const faker = require('faker');
@@ -54,46 +54,5 @@ app.get('/api/products/:id', (req, res) => {
     .then(product => res.status(200).send(product))
     .catch(err => res.status(400).send());
 });
-
-// const generateData = async () => {
-//   for (let i = 0; i < 1000; i++) {
-//     let productsArr = [];
-//     for (let i = 0; i < 10000; i++) {
-//       let newProduct = {
-//         id: i,
-//         name: faker.commerce.productName(),
-//         price: (parseFloat(faker.commerce.price()) + Math.random()).toFixed(2),
-//         category: faker.commerce.department(),
-//         img1_url: faker.image.abstract()
-//       };
-//       productsArr.push(newProduct);
-//     }
-//     try {
-//       await db.products.add(productsArr);
-//       console.log(`successfully logged number ${i} at ${Date.now()}`);
-//     } catch (err) {
-//       console.log(err);
-//     }
-//   }
-// };
-
-// generateData();
-
-// let longStr = '';
-// console.time('timer');
-// for (let i = 0; i < 1000000; i++) {
-//   longStr += `${faker.random.uuid()},${faker.commerce.productName()},${(
-//     parseFloat(faker.commerce.price()) + Math.random()
-//   ).toFixed(2)},${faker.commerce.department()},${faker.image.abstract()}\n`;
-// }
-
-// (async () => {
-//   await fs.appendFile('./seeding.csv', longStr, err => {
-//     if (err) {
-//       console.log(err);
-//     }
-//   });
-//   console.timeEnd('timer');
-// })();
 
 module.exports = app;
