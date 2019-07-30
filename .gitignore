@@ -71,3 +71,6 @@ bundle.js
 
 # csv
 *.csv
+
+# artillery output
+test/stress/output/
