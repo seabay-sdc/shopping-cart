@@ -52,7 +52,7 @@ const cart = {
 const products = {
   get: async (item = {}) => {
     const query = await client.query(
-      'SELECT * FROM productsTEST WHERE prodid = $1',
+      'SELECT * FROM products WHERE prodid = $1',
       [item.id]
     );
     return new Promise((resolve, reject) => {
