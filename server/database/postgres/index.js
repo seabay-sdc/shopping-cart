@@ -1,4 +1,9 @@
-const client = require('./config');
+let client;
+if (process.env.NODE_ENV === 'production') {
+  client = require('./config');
+} else {
+  client = require('./testConfig');
+}
 
 // cart methods
 const cart = {

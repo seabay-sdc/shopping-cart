@@ -1,9 +1,16 @@
 const { Client } = require('pg');
-const connectionString =
-  process.env.NODE_ENV === 'production'
-    ? process.env.PG_PROD_URI
-    : process.env.PG_TEST_URI;
-const client = new Client(connectionString);
 
-client.connect();
+const client = new Client({
+  user: process.env.DB_USER,
+  password: process.env.DB_PWD,
+  host: process.env.DB_HOST,
+  database: process.env.DB_NAME,
+  port: process.env.DB_PORT
+});
+
+client.connect(err => {
+  if (err) {
+    console.error(err);
+  }
+});
 module.exports = client;

@@ -1,6 +1,5 @@
 require('dotenv').config();
 process.env.NODE_ENV = 'test';
-console.log(process.env.NODE_ENV);
 const db = require('../server/database/postgres');
 const { expect } = require('chai');
 

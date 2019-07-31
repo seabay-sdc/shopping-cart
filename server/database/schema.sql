@@ -1,8 +1,8 @@
-DROP DATABASE IF EXISTS sdc;
+DROP DATABASE IF EXISTS sdctest;
 
-CREATE DATABASE sdc;
+CREATE DATABASE sdctest;
 
-\c sdc;
+\c sdctest;
 
 CREATE TABLE products (
   id SERIAL,
@@ -23,4 +23,4 @@ CREATE TABLE cartItems (
   quantity INT
 );
 
-\copy testTable (proid, name, price, category, img1_url) FROM './seeding.csv' DELIMITER ',' CSV HEADER;
+-- \copy products (prodid, name, price, category, img1_url) FROM './seeding.csv' DELIMITER ',' CSV HEADER;
