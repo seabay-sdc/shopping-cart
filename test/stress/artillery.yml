@@ -1,12 +1,12 @@
 config:
-  target: 'http://localhost:3000'
+  target: 'http://ec2-18-218-246-144.us-east-2.compute.amazonaws.com:3000/'
   phases:
     - duration: 10
-      arrivalRate: 500
+      arrivalRate: 1100
   defaults:
     headers:
       x-my-service-auth: '987401838271002188298567'
 scenarios:
   - flow:
       - get:
-          url: '/api/products'
+          url: '/'
